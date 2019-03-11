@@ -55,13 +55,13 @@ class Samurai(Entity.Entity):
                     print("A Pressed")
                     if self.direction == d.RIGHT:
                         print("GO LEFT")
-                        #self.setDirection('left')
+                        self.setDirection(d.LEFT)
                         self.leftPressed = True
                 if event.key == pygame.K_d:
                     print("D Pressed")
                     if self.direction == d.LEFT:
                         print("GO RIGHT")
-                        #self.setDirection('right')
+                        self.setDirection(d.RIGHT)
                         self.rightPressed = True
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a:
@@ -70,7 +70,4 @@ class Samurai(Entity.Entity):
                 if event.key == pygame.K_d:
                     print("D Released")
                     self.rightPressed = False
-    
-
-    def fixDirection(self):
-        if 
+      

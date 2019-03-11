@@ -2,6 +2,7 @@ import pygame
 import Visual
 import Entity
 import Samurai
+import directions
 SIZE = WIDTH, HEIGHT = 600, 400 #the width and height of our screen
 BACKGROUND_COLOR = pygame.Color('white') #The background colod of our window
 FPS = 60 #Frames per second
@@ -9,6 +10,7 @@ FPS = 60 #Frames per second
 def main():
     pygame.init()
     screen = pygame.display.set_mode(SIZE)
+    d = directions.directions
 
     Samurai_group = pygame.sprite.Group()
 
@@ -16,7 +18,7 @@ def main():
 
     sam.loadAnimations()
 
-    sam.setDirection('left')
+    sam.setDirection(d.LEFT)
 
     clock = pygame.time.Clock()
  
