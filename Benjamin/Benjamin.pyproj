@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>32fa0e36-b5b9-4789-af75-d1bff1aaf895</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Benjamin.py</StartupFile>
+    <StartupFile>Main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,7 +21,97 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Benjamin.py" />
+    <Compile Include="Main.py" />
+    <Compile Include="Entity.py" />
+    <Compile Include="Samurai.py" />
+    <Compile Include="Visual.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Samurai_idle_backwords\" />
+    <Folder Include="Samurai_idle_forward\" />
+    <Folder Include="Samurai_idle_left\" />
+    <Folder Include="Samurai_idle_right\" />
+    <Folder Include="sunflower\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords1.png" />
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords10.png" />
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords11.png" />
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords12.png" />
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords13.png" />
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords14.png" />
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords15.png" />
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords2.png" />
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords3.png" />
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords4.png" />
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords5.png" />
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords6.png" />
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords7.png" />
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords8.png" />
+    <Content Include="Samurai_idle_backwords\Samurai_idle_backwords9.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward1.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward10.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward11.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward12.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward13.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward14.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward15.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward2.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward3.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward4.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward5.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward6.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward7.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward8.png" />
+    <Content Include="Samurai_idle_forward\samurai_idle_forward9.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left1.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left10.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left11.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left12.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left13.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left14.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left15.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left2.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left3.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left4.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left5.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left6.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left7.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left8.png" />
+    <Content Include="Samurai_idle_left\Samurai_idle_left9.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right1.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right10.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right11.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right12.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right13.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right14.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right15.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right2.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right3.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right4.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right5.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right6.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right7.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right8.png" />
+    <Content Include="Samurai_idle_right\Samurai_idle_right9.png" />
+    <Content Include="sunflower\sunflower0.png" />
+    <Content Include="sunflower\sunflower1.png" />
+    <Content Include="sunflower\sunflower10.png" />
+    <Content Include="sunflower\sunflower11.png" />
+    <Content Include="sunflower\sunflower12.png" />
+    <Content Include="sunflower\sunflower13.png" />
+    <Content Include="sunflower\sunflower14.png" />
+    <Content Include="sunflower\sunflower15.png" />
+    <Content Include="sunflower\sunflower16.png" />
+    <Content Include="sunflower\sunflower17.png" />
+    <Content Include="sunflower\sunflower2.png" />
+    <Content Include="sunflower\sunflower3.png" />
+    <Content Include="sunflower\sunflower4.png" />
+    <Content Include="sunflower\sunflower5.png" />
+    <Content Include="sunflower\sunflower6.png" />
+    <Content Include="sunflower\sunflower7.png" />
+    <Content Include="sunflower\sunflower8.png" />
+    <Content Include="sunflower\sunflower9.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
