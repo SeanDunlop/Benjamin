@@ -3,6 +3,9 @@ import Visual
 import Entity
 import directions
 
+false = False
+true = True
+
 KEY_W = 119
 KEY_A = 97
 KEY_S = 115
@@ -11,17 +14,19 @@ d = directions.directions
 
 
 class Samurai(Entity.Entity):
-    def __init__(self, group):
+    def __init__(self, group, x, y):
 
-        super().__init__()
-        self.direction = 1
-        self.group = group # the group of sprites which this object's animations belong to
+        super().__init__(group, x ,y)
+        self.direction = d.none
+        self.jumps = 2
+        self.jumpPressed = False
         self.leftPressed = False
         self.rightPressed = False
         self.downPressed = False
         self.upPressed = False
-        self.moveDirection = 1
-        self.speed = 10
+        self.moveDirection = d.none
+        self.speed = 8
+        self.yVelo = 0
 
 
     def loadAnimations(self):
@@ -30,66 +35,81 @@ class Samurai(Entity.Entity):
         self.load_animation('Samurai_idle_forward', 15)
         self.load_animation('Samurai_idle_backwords', 15)
 
+    def setMoveDirection(self, direction):
+        self.moveDirection = direction
+
     def setDirection(self, direction): # set the direction of the samurai
 
         if direction == d.RIGHT:
             self.direction = d.RIGHT
-            self.setAnimation('Samurai_idle_right')
-            self.group.empty()
-            self.group.add(self.currentAnimation)
+            self.changeAnimation('Samurai_idle_right')
         if direction == d.LEFT:
             self.direction = d.LEFT
-            self.setAnimation('Samurai_idle_left')
-            self.group.empty()
-            self.group.add(self.currentAnimation)
+            self.changeAnimation('Samurai_idle_left')
         if direction == d.DOWN:
             self.direction = d.DOWN
-            self.setAnimation('Samurai_idle_forward')
-            self.group.empty()
-            self.group.add(self.currentAnimation)
+            self.changeAnimation('Samurai_idle_forward')
         if direction == d.UP:
             self.direction = d.UP
-            self.setAnimation('Samurai_idle_backwords')
-            self.group.empty()
-            self.group.add(self.currentAnimation)
-
+            self.changeAnimation('Samurai_idle_backwords')
+        if direction == d.NONE:
+            self.direction = d.NONE
+    def jump(self):
+        self.yVelo = -13
+    def applyGravity(self):
+        if(self.ypos < 200):
+            self.yVelo = self.yVelo + 1
+        if(self.ypos >=200):
+            self.jumps = 2
+            self.yVelo = 0
+            self.moveTo(self.xpos, 200)
     def update(self):
         super().update()
+        self.updateKeys()
+        self.doMovement()
+        self.applyGravity()
+
+    def doMovement(self):
+        dir = 0
+        if self.moveDirection == d.LEFT:
+            dir = -1
+        if self.moveDirection == d.RIGHT:
+            dir = 1
+        self.move(self.speed * dir, self.yVelo)
+
+    def updateKeys(self):
         pygame.event.pump()
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a:
-                    print("A Pressed")
-                    print("GO LEFT")
                     self.fixDirection(d.LEFT, True)
                 if event.key == pygame.K_d:
-                    print("D Pressed")
-                    print("GO RIGHT")
                     self.fixDirection(d.RIGHT, True)
                 if event.key == pygame.K_s:
-                    print("S Pressed")
-                    print("GO DOWN")
                     self.fixDirection(d.DOWN, True)
                 if event.key == pygame.K_w:
-                    print("W Pressed")
-                    print("GO UP")
                     self.fixDirection(d.UP, True)
+                if event.key == pygame.K_SPACE:
+                    if (self.jumpPressed == False):
+                        if(self.jumps > 0):
+                            self.jump()
+                            self.jumps = self.jumps - 1
+                    self.jumpPressed = True
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a:
-                    print("A Released")
                     self.fixDirection(d.LEFT, False)
                 if event.key == pygame.K_d:
-                    print("D Released")
                     self.fixDirection(d.RIGHT, False)
                 if event.key == pygame.K_s:
-                    print("S Released")
                     self.fixDirection(d.DOWN, False)
                 if event.key == pygame.K_w:
-                    print("W Released")
                     self.fixDirection(d.UP, False)
+                if event.key == pygame.K_SPACE:
+                    self.jumpPressed = False
     def fixDirection(self, direction, down):
         if down == True:
             self.setDirection(direction)
+            self.setMoveDirection(direction)
             if direction == d.LEFT:
                 self.leftPressed = True
             if direction == d.RIGHT:
@@ -101,12 +121,16 @@ class Samurai(Entity.Entity):
         if down == False:
             if direction == d.LEFT:
                 self.leftPressed = False
+                self.setMoveDirection(d.NONE)
                 if self.rightPressed == True:
                     self.setDirection(d.RIGHT)
+                    self.setMoveDirection(d.RIGHT)
             if direction == d.RIGHT:
                 self.rightPressed = False
+                self.setMoveDirection(d.NONE)
                 if self.leftPressed == True:
                     self.setDirection(d.LEFT)
+                    self.setMoveDirection(d.LEFT)
             if direction == d.UP:
                 self.upPressed = False
                 if self.downPressed == True:
@@ -119,4 +143,4 @@ class Samurai(Entity.Entity):
             if self.rightPressed == False:
                 if self.upPressed == False:
                     if self.downPressed == False:
-                        self.setDirection(d.down)
+                        a = 1
