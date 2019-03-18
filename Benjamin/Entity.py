@@ -1,5 +1,17 @@
 import Visual
 import pygame
+
+class EntityGroup():
+    def __init__(self):
+        self.entities = []
+    def add(self, entity):
+        self.entities.append(entity)
+    def updateAll(self):
+        for e in self.entities:
+            e.update()
+
+
+
 class Entity():
     def __init__(self, group, x, y):
         super(Entity, self).__init__()

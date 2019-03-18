@@ -26,10 +26,14 @@
     </Compile>
     <Compile Include="Main.py" />
     <Compile Include="Entity.py" />
+    <Compile Include="Platform.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Samurai.py" />
     <Compile Include="Visual.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Platform\" />
     <Folder Include="Samurai_idle_backwords\" />
     <Folder Include="Samurai_idle_forward\" />
     <Folder Include="Samurai_idle_left\" />
@@ -37,6 +41,7 @@
     <Folder Include="sunflower\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Platform\Platform1.png" />
     <Content Include="Samurai_idle_backwords\Samurai_idle_backwords1.png" />
     <Content Include="Samurai_idle_backwords\Samurai_idle_backwords10.png" />
     <Content Include="Samurai_idle_backwords\Samurai_idle_backwords11.png" />
