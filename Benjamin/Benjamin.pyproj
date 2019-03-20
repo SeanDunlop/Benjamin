@@ -21,6 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Collider.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="directions.py">
       <SubType>Code</SubType>
     </Compile>

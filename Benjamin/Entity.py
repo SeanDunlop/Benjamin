@@ -9,8 +9,8 @@ class EntityGroup():
     def updateAll(self):
         for e in self.entities:
             e.update()
-
-
+    def getAll(self):
+        return self.entities
 
 class Entity():
     def __init__(self, group, x, y):
