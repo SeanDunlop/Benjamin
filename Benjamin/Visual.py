@@ -6,8 +6,9 @@ def getImageByName(name, count):
 def getPath(name, index):
     filename = name + '/' + name + str(index) + '.png'
     return filename
+
 class Animation(pygame.sprite.Sprite):
-    def __init__(self, name, count):
+    def __init__(self, name, count, x, y):
         super(Animation, self).__init__()
         self.count = count
         self.name = name
@@ -16,9 +17,9 @@ class Animation(pygame.sprite.Sprite):
         self.index = 0
         self.loadImages()
         self.image = self.images[self.index]
-        self.rect = pygame.Rect(100,100,32, 32)
+        self.rect = pygame.Rect(x,y,32, 32)
         self.frameCount = 0
-        
+
     def loadImages(self):
         for i in range(1, self.count + 1):
             self.images.append(getImageByName(self.name, i))

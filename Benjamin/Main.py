@@ -15,13 +15,23 @@ def main():
     screen = pygame.display.set_mode(SIZE)
     d = directions.directions
 
-    Samurai_group = pygame.sprite.Group()
-    Platform_group = pygame.sprite.Group()
-    sam = Samurai.Samurai(Samurai_group, 50, 50)
-    platform1 = Platform.Platform(Platform_group, 150, 150)
+    #Samurai_group = pygame.sprite.Group()
+    #Platform_group = pygame.sprite.Group()
+
+    sam = Samurai.Samurai(50, 50)
+
+    platform2 = Platform.Platform( 60, 250)
+    platform1 = Platform.Platform( 150, 150)
+    
     sam.loadAnimations()
-    platforms = Entity.EntityGroup()
+
+    platforms = Entity.EntityGroup(screen)
+    players = Entity.EntityGroup(screen)
+
     platforms.add(platform1)
+    platforms.add(platform2)
+    
+    players.add(sam)
 
     collider = Collider.Collider(platforms, sam)
 
@@ -32,13 +42,17 @@ def main():
     while True:
         
  
-        Samurai_group.update()
+        #Samurai_group.update()
         screen.fill(BACKGROUND_COLOR)
-        Samurai_group.draw(screen)#draw sam's animations
-        Platform_group.draw(screen)
+        #Samurai_group.draw(screen)#draw sam's animations
+        #Platform_group.draw(screen)
         collider.checkAll()
-        sam.update()#update sam object
+        #sam.update()#update sam object
         platforms.updateAll()
+        platforms.drawAll()
+        players.updateAll()
+        players.drawAll()
+
         pygame.display.update()
         clock.tick(FPS)
  

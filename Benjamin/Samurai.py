@@ -14,9 +14,9 @@ d = directions.directions
 
 
 class Samurai(Entity.Entity):
-    def __init__(self, group, x, y):
+    def __init__(self, x, y):
 
-        super().__init__(group, x ,y)
+        super().__init__(x ,y)
         self.direction = d.none
         self.jumps = 2
         self.jumpPressed = False
@@ -27,7 +27,8 @@ class Samurai(Entity.Entity):
         self.moveDirection = d.none
         self.speed = 8
         self.yVelo = 0
-
+        self.xVelo = 0
+        self.grounded = False
 
     def loadAnimations(self):
         self.load_animation('Samurai_idle_left', 15)
@@ -56,13 +57,13 @@ class Samurai(Entity.Entity):
             self.direction = d.NONE
     def jump(self):
         self.yVelo = -13
+        self.grounded = False
     def applyGravity(self):
-        if(self.ypos < 200):
+        if(self.grounded == False):
             self.yVelo = self.yVelo + 1
-        if(self.ypos >=200):
+        if(self.grounded == True):
             self.jumps = 2
             self.yVelo = 0
-            self.moveTo(self.xpos, 200)
     def update(self):
         super().update()
         self.updateKeys()
@@ -75,7 +76,8 @@ class Samurai(Entity.Entity):
             dir = -1
         if self.moveDirection == d.RIGHT:
             dir = 1
-        self.move(self.speed * dir, self.yVelo)
+        self.xVelo = self.speed * dir
+        self.move(self.xVelo, self.yVelo)
 
     def updateKeys(self):
         pygame.event.pump()
@@ -109,11 +111,13 @@ class Samurai(Entity.Entity):
     def fixDirection(self, direction, down):
         if down == True:
             self.setDirection(direction)
-            self.setMoveDirection(direction)
+            
             if direction == d.LEFT:
                 self.leftPressed = True
+                self.setMoveDirection(direction)
             if direction == d.RIGHT:
                 self.rightPressed = True
+                self.setMoveDirection(direction)
             if direction == d.DOWN:
                 self.downPressed = True
             if direction == d.UP:
