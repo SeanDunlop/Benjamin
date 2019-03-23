@@ -77,15 +77,20 @@ class Collider():
         if(playerBox.bottom + dy >= wallBox.top and playerBox.top + dy + heightAdjust <= wallBox.bottom):
             if(playerBox.right + dx - widthAdjust>= wallBox.left and playerBox.left + dx + widthAdjust <= wallBox.right):
                 if (dy > 0):#if player is moving down
+                    topCollide = True
                     if (dx > 0):#if player is moving right
                         a = 1
+                        #leftCollide = True
                     if (dx < 0):#if player is moving left
                         a = 1
-
+                        #rightCollide = True
                 if (dy < 0):#if player is moving up
-                   if (dx > 0):#if player is moving right
+                    bottomCollide = True
+                    if (dx > 0):#if player is moving right
                         a = 1
-                   if (dx < 0):#if player is moving left
+                        #leftCollide = True
+                    if (dx < 0):#if player is moving left
+                        #rightCollide = True
                         a = 1 
 
         return (leftCollide, rightCollide, topCollide, bottomCollide)
