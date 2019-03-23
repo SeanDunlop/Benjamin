@@ -2,6 +2,7 @@ import pygame
 import Visual
 import Entity
 import directions
+import sys
 
 false = False
 true = True
@@ -14,9 +15,9 @@ d = directions.directions
 
 
 class Samurai(Entity.Entity):
-    def __init__(self, x, y):
+    def __init__(self, x, y, collider):
 
-        super().__init__(x ,y)
+        super().__init__(x ,y, 64, 64)
         self.direction = d.none
         self.jumps = 2
         self.jumpPressed = False
@@ -29,7 +30,8 @@ class Samurai(Entity.Entity):
         self.yVelo = 0
         self.xVelo = 0
         self.grounded = False
-
+        self.collider = collider
+        self.EXIT = False
     def loadAnimations(self):
         self.load_animation('Samurai_idle_left', 15)
         self.load_animation('Samurai_idle_right', 15)
@@ -55,28 +57,50 @@ class Samurai(Entity.Entity):
             self.changeAnimation('Samurai_idle_backwords')
         if direction == d.NONE:
             self.direction = d.NONE
+    
     def jump(self):
+
         self.yVelo = -13
         self.grounded = False
-    def applyGravity(self):
-        if(self.grounded == False):
-            self.yVelo = self.yVelo + 1
-        if(self.grounded == True):
-            self.jumps = 2
-            self.yVelo = 0
+
     def update(self):
         super().update()
         self.updateKeys()
         self.doMovement()
-        self.applyGravity()
 
     def doMovement(self):
+
         dir = 0
         if self.moveDirection == d.LEFT:
             dir = -1
         if self.moveDirection == d.RIGHT:
             dir = 1
         self.xVelo = self.speed * dir
+
+        if(self.grounded == False):
+            self.yVelo = self.yVelo + 1
+        if(self.grounded == True):
+            self.jumps = 2
+            self.yVelo = 0
+
+        top, bottom, left, right = self.collider.checkAll(self, self.xVelo, self.yVelo)
+        
+        if (bottom == True and self.grounded == False):#Collided upwards
+            self.yVelo = 0
+            print("Collided Upwards")
+        if (top == True and self.grounded == False):#Collided downwards
+            self.yVelo = 0
+            self.grounded = True
+            print("Collided Downwards")
+        else:
+            self.grounded = False
+        if (right == True):#Collided on the left
+            self.xVelo = 0
+            print("Collided on left")
+        if (left == True):#Collided on the player
+            self.xVelo = 0
+            print("Collided on right")
+        
         self.move(self.xVelo, self.yVelo)
 
     def updateKeys(self):
@@ -97,6 +121,8 @@ class Samurai(Entity.Entity):
                             self.jump()
                             self.jumps = self.jumps - 1
                     self.jumpPressed = True
+                if event.key == pygame.K_ESCAPE:
+                    self.EXIT = True
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_a:
                     self.fixDirection(d.LEFT, False)
