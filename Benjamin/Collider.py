@@ -11,7 +11,8 @@ class Collider():
         rightCollide = False
 
         for wall in self.obstacles.getAll():
-            left, right, top, bottom = self.collide(player, wall, dx, dy)
+            #self.collide(player, wall, dx, dy)
+            left, right, top, bottom = self.manualCollide(player, wall, dx, dy)
             if top:
                 topCollide = True
             if bottom:
@@ -52,13 +53,39 @@ class Collider():
 
         if(bT):
             entity1.moveTo(entity1.rect.left, entity2.rect.top - entity1.rect.height)
+            print("HitTop")
         elif(bB):
-            entity1.moveTo(entity1.rect.left, entity2.rect.bottom)
+             entity1.moveTo(entity1.rect.left, entity2.rect.bottom)
         elif(bL):
             entity1.moveTo(entity2.rect.left - entity2.width, entity1.rect.top)
         elif(bR):
             entity1.moveTo(entity2.rect.right, entity1.rect.top)
         return (bL, bR, bT, bB)
-    def manualCollide(self, entity1, entity2):
-        if(entity1.rect.bottom >= entity2.rect.top and entity1.rect.top <= entity2.rect.bottom):
-            print("Collide")
+
+    def manualCollide(self, player, wall, dx, dy):
+
+        playerBox = player.rect
+        widthAdjust = 25
+        heightAdjust = 15
+        wallBox = wall.rect
+
+        bottomCollide = False
+        topCollide = False
+        leftCollide = False
+        rightCollide = False
+
+        if(playerBox.bottom + dy >= wallBox.top and playerBox.top + dy + heightAdjust <= wallBox.bottom):
+            if(playerBox.right + dx - widthAdjust>= wallBox.left and playerBox.left + dx + widthAdjust <= wallBox.right):
+                if (dy > 0):#if player is moving down
+                    if (dx > 0):#if player is moving right
+                        a = 1
+                    if (dx < 0):#if player is moving left
+                        a = 1
+
+                if (dy < 0):#if player is moving up
+                   if (dx > 0):#if player is moving right
+                        a = 1
+                   if (dx < 0):#if player is moving left
+                        a = 1 
+
+        return (leftCollide, rightCollide, topCollide, bottomCollide)

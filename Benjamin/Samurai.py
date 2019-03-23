@@ -19,14 +19,14 @@ class Samurai(Entity.Entity):
 
         super().__init__(x ,y, 64, 64)
         self.direction = d.none
-        self.jumps = 2
+        self.jumps = 4
         self.jumpPressed = False
         self.leftPressed = False
         self.rightPressed = False
         self.downPressed = False
         self.upPressed = False
         self.moveDirection = d.none
-        self.speed = 8
+        self.speed = 2
         self.yVelo = 0
         self.xVelo = 0
         self.grounded = False

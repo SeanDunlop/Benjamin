@@ -37,14 +37,27 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Platform\" />
+    <Folder Include="Samurai_falling_left\" />
+    <Folder Include="Samurai_falling_right\" />
     <Folder Include="Samurai_idle_backwords\" />
     <Folder Include="Samurai_idle_forward\" />
     <Folder Include="Samurai_idle_left\" />
     <Folder Include="Samurai_idle_right\" />
+    <Folder Include="Samurai_run_left\" />
+    <Folder Include="Samurai_run_right\" />
+    <Folder Include="static\" />
     <Folder Include="sunflower\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Platform\Platform1.png" />
+    <Content Include="Samurai_falling_left\Samurai_falling_left1.png" />
+    <Content Include="Samurai_falling_left\Samurai_falling_left2.png" />
+    <Content Include="Samurai_falling_left\Samurai_falling_left3.png" />
+    <Content Include="Samurai_falling_left\Samurai_falling_left4.png" />
+    <Content Include="Samurai_falling_right\Samurai_falling_right1.png" />
+    <Content Include="Samurai_falling_right\Samurai_falling_right2.png" />
+    <Content Include="Samurai_falling_right\Samurai_falling_right3.png" />
+    <Content Include="Samurai_falling_right\Samurai_falling_right4.png" />
     <Content Include="Samurai_idle_backwords\Samurai_idle_backwords1.png" />
     <Content Include="Samurai_idle_backwords\Samurai_idle_backwords10.png" />
     <Content Include="Samurai_idle_backwords\Samurai_idle_backwords11.png" />
@@ -105,6 +118,29 @@
     <Content Include="Samurai_idle_right\Samurai_idle_right7.png" />
     <Content Include="Samurai_idle_right\Samurai_idle_right8.png" />
     <Content Include="Samurai_idle_right\Samurai_idle_right9.png" />
+    <Content Include="Samurai_run_left\Samurai_run_left1.png" />
+    <Content Include="Samurai_run_left\Samurai_run_left2.png" />
+    <Content Include="Samurai_run_left\Samurai_run_left3.png" />
+    <Content Include="Samurai_run_left\Samurai_run_left4.png" />
+    <Content Include="Samurai_run_left\Samurai_run_left5.png" />
+    <Content Include="Samurai_run_left\Samurai_run_left6.png" />
+    <Content Include="Samurai_run_left\Samurai_run_left7.png" />
+    <Content Include="Samurai_run_left\Samurai_run_left8.png" />
+    <Content Include="Samurai_run_right\Samurai_run_right1.png" />
+    <Content Include="Samurai_run_right\Samurai_run_right2.png" />
+    <Content Include="Samurai_run_right\Samurai_run_right3.png" />
+    <Content Include="Samurai_run_right\Samurai_run_right4.png" />
+    <Content Include="Samurai_run_right\Samurai_run_right5.png" />
+    <Content Include="Samurai_run_right\Samurai_run_right6.png" />
+    <Content Include="Samurai_run_right\Samurai_run_right7.png" />
+    <Content Include="Samurai_run_right\Samurai_run_right8.png" />
+    <Content Include="static\background.png" />
+    <Content Include="static\box.png" />
+    <Content Include="static\Bricks.png" />
+    <Content Include="static\Dirt.png" />
+    <Content Include="static\ME&amp;Sunny.png" />
+    <Content Include="static\Pride.png" />
+    <Content Include="static\Scull.png" />
     <Content Include="sunflower\sunflower0.png" />
     <Content Include="sunflower\sunflower1.png" />
     <Content Include="sunflower\sunflower10.png" />

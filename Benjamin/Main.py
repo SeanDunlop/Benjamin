@@ -22,11 +22,22 @@ def main():
 
     platform2 = Platform.Platform( 60, 250)
     platform1 = Platform.Platform( 150, 150)
+    platform7 = Platform.Platform( 92, 50)
+    platform3 = Platform.Platform( 92, 250)
+    platform4 = Platform.Platform( 124, 250)
+    platform5 = Platform.Platform( 156, 250)
+    platform6 = Platform.Platform( 188, 250)
+
     platforms = Entity.EntityGroup(screen)
     players = Entity.EntityGroup(screen)
 
+    platforms.add(platform7)
     platforms.add(platform1)
     platforms.add(platform2)
+    platforms.add(platform3)
+    platforms.add(platform4)
+    platforms.add(platform5)
+    platforms.add(platform6)
 
 
     sam = Samurai.Samurai(50, 50, Collider.Collider(platforms))
