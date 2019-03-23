@@ -12,7 +12,8 @@ class Collider():
 
         for wall in self.obstacles.getAll():
             #self.collide(player, wall, dx, dy)
-            left, right, top, bottom = self.manualCollide(player, wall, dx, dy)
+            #left, right, top, bottom = self.manualCollide(player, wall, dx, dy)
+            left, right, top, bottom = self.collide(player, wall, dx, dy)
             if top:
                 topCollide = True
             if bottom:
