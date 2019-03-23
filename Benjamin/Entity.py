@@ -41,9 +41,10 @@ class Entity():
     def setAnimation(self, name):
         self.currentAnimation = self.animations[name]
     def changeAnimation(self, name):
-        self.setAnimation(name)
-        self.group.empty()
-        self.group.add(self.currentAnimation)
+        if(self.animations[name] != self.currentAnimation):
+            self.setAnimation(name)
+            self.group.empty()
+            self.group.add(self.currentAnimation)
     def update(self):
         a = 1
         #self.animations[self.currentAnimation].update()

@@ -33,6 +33,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Samurai.py" />
+    <Compile Include="example.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Visual.py" />
   </ItemGroup>
   <ItemGroup>

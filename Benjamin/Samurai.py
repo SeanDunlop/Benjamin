@@ -18,56 +18,92 @@ class Samurai(Entity.Entity):
     def __init__(self, x, y, collider):
 
         super().__init__(x ,y, 64, 64)
-        self.direction = d.none
-        self.jumps = 4
+
+        
+        self.maxJumps = 3
+        self.jumps = self.maxJumps
+        self.speed = 2
+
         self.jumpPressed = False
         self.leftPressed = False
         self.rightPressed = False
         self.downPressed = False
         self.upPressed = False
+        self.EXIT = False
+
         self.moveDirection = d.none
-        self.speed = 2
+
         self.yVelo = 0
         self.xVelo = 0
+
         self.grounded = False
+        self.moving = False
+        self.direction = d.none
+
         self.collider = collider
-        self.EXIT = False
+
+        
+        
     def loadAnimations(self):
         self.load_animation('Samurai_idle_left', 15)
         self.load_animation('Samurai_idle_right', 15)
         self.load_animation('Samurai_idle_forward', 15)
         self.load_animation('Samurai_idle_backwords', 15)
+        self.load_animation('Samurai_falling_left', 4)
+        self.load_animation('Samurai_falling_right', 4)
+        self.load_animation('Samurai_run_left', 8)
+        self.load_animation('Samurai_run_right', 8)
 
     def setMoveDirection(self, direction):
         self.moveDirection = direction
+    def fixAnimation(self):
 
+        if (self.grounded == True):
+            if self.moving == True:
+                if self.moveDirection == d.left:
+                    self.changeAnimation('Samurai_run_left')
+                if self.moveDirection == d.right:
+                    self.changeAnimation('Samurai_run_right')
+            if self.moving == False:
+                if self.direction == d.left:
+                    self.changeAnimation('Samurai_idle_left')
+                if self.direction == d.right:
+                    self.changeAnimation('Samurai_idle_right')
+
+        if (self.grounded == False):
+            if self.direction == d.left:
+                self.changeAnimation('Samurai_falling_left')
+            if self.direction == d.right:
+                self.changeAnimation('Samurai_falling_right')
+                
     def setDirection(self, direction): # set the direction of the samurai
 
         if direction == d.RIGHT:
             self.direction = d.RIGHT
-            self.changeAnimation('Samurai_idle_right')
+            #self.changeAnimation('Samurai_idle_right')
         if direction == d.LEFT:
             self.direction = d.LEFT
-            self.changeAnimation('Samurai_idle_left')
+            #self.changeAnimation('Samurai_idle_left')
         if direction == d.DOWN:
             self.direction = d.DOWN
-            self.changeAnimation('Samurai_idle_forward')
+            #self.changeAnimation('Samurai_idle_forward')
         if direction == d.UP:
             self.direction = d.UP
-            self.changeAnimation('Samurai_idle_backwords')
+            #self.changeAnimation('Samurai_idle_backwords')
         if direction == d.NONE:
             self.direction = d.NONE
-    
+        
     def jump(self):
 
         self.yVelo = -13
         self.grounded = False
+        
 
     def update(self):
         super().update()
         self.updateKeys()
         self.doMovement()
-
+        self.fixAnimation()
     def doMovement(self):
 
         dir = 0
@@ -80,7 +116,7 @@ class Samurai(Entity.Entity):
         if(self.grounded == False):
             self.yVelo = self.yVelo + 1
         if(self.grounded == True):
-            self.jumps = 2
+            self.jumps = self.maxJumps
             self.yVelo = 0
 
         top, bottom, left, right = self.collider.checkAll(self, self.xVelo, self.yVelo)
@@ -174,3 +210,7 @@ class Samurai(Entity.Entity):
                 if self.upPressed == False:
                     if self.downPressed == False:
                         a = 1
+        if self.moveDirection == d.none:
+            self.moving = False
+        else:
+            self.moving = True
