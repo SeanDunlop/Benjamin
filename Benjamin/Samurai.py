@@ -20,9 +20,9 @@ class Samurai(Entity.Entity):
         super().__init__(x ,y, 64, 64)
 
         
-        self.maxJumps = 3
+        self.maxJumps = 30
         self.jumps = self.maxJumps
-        self.speed = 2
+        self.speed = 40
 
         self.jumpPressed = False
         self.leftPressed = False

@@ -27,6 +27,7 @@ def main():
     platform4 = Platform.Platform( 124, 250)
     platform5 = Platform.Platform( 156, 250)
     platform6 = Platform.Platform( 188, 250)
+    platform8 = Platform.Platform( 156, 212)
 
     platforms = Entity.EntityGroup(screen)
     players = Entity.EntityGroup(screen)
@@ -38,7 +39,7 @@ def main():
     platforms.add(platform4)
     platforms.add(platform5)
     platforms.add(platform6)
-
+    platforms.add(platform8)
 
     sam = Samurai.Samurai(50, 50, Collider.Collider(platforms))
     sam.loadAnimations()
