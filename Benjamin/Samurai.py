@@ -22,9 +22,9 @@ class Samurai(Entity.Entity):
         
         self.maxJumps = 1
         self.jumps = self.maxJumps
-        self.groundAccel = 4
-        self.maxSpeed = 16
-        self.jumpPower = 16
+        self.groundAccel = 2
+        self.maxSpeed = 12
+        self.jumpPower = 12
         self.groundDecel = 8
         self.airAccel = 2
         self.slideAccel = 1
@@ -56,7 +56,8 @@ class Samurai(Entity.Entity):
 
         self.grabbing = False
         self.grabbed = False
-        self.grabTime = 0
+        self.lastGrab = False
+        self.grabTime = 60
         self.grabDirection = d.none
 
 
@@ -196,9 +197,10 @@ class Samurai(Entity.Entity):
         if(self.grabbed == False):
             if(self.grabTime < 60):
                 self.grabTime = self.grabTime + 1
-    
+        print(self.grabTime)
         if(self.grabbed == True):
             self.grabTime = self.grabTime - 1
+            print(self.grabTime)
             self.jumps = self.maxJumps
             if (self.grabTime <= 0):
                 self.grabbed = False

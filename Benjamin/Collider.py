@@ -21,18 +21,34 @@ class Collider():
                 #player.rect.right = wall.rect.left
                 player.moveTo(wall.rect.left - player.rect.width ,player.rect.top)
                 player.xVelo = 0
-                if(player.grabbing == True and player.grabTime >= 60 and player.grounded == False):
-                    player.grabbed = True
-                    player.grabDirection = directions.directions.right
-                    print("GRABBED RIGHT")
+                if(player.yVelo >= -5):
+                    if(player.grabbing == True and player.grabTime >= 60 and player.grounded == False):
+                        player.grabbed = True
+                        player.grabDirection = directions.directions.right
+                        #print("GRABBED RIGHT")
+                        player.lastGrab = True
+                    elif(player.grabbing == True and player.lastGrab == False and player.grounded == False):
+                        player.grabTime = 60
+                        player.grabbed = True
+                        player.grabDirection = directions.directions.right
+                        #print("GRABBED RIGHT")
+                        player.lastGrab = True
             if(dx < 0):
                 #player.rect.left = wall.rect.right
                 player.moveTo(wall.rect.right, player.rect.top)
                 player.xVelo = 0
-                if(player.grabbing == True and player.grabTime >= 60 and player.grounded == False):
-                    player.grabbed = True
-                    player.grabDirection = directions.directions.left
-                    print("GRABBED LEFT")
+                if(player.yVelo >= -5):
+                    if(player.grabbing == True and player.grabTime >= 60 and player.grounded == False):
+                        player.grabbed = True
+                        player.grabDirection = directions.directions.left
+                        #print("GRABBED LEFT")
+                        player.lastGrab = False
+                    elif(player.grabbing == True and player.lastGrab == True and player.grounded == False):
+                        player.grabTime = 60
+                        player.grabbed = True
+                        player.grabDirection = directions.directions.left
+                        #print("GRABBED LEFT")
+                        player.lastGrab = False
             if(dy > 0):
                 #player.rect.bottom = wall.rect.top
                 player.moveTo(player.rect.left, wall.rect.top - player.rect.height)
