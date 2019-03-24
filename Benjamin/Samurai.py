@@ -122,8 +122,8 @@ class Samurai(Entity.Entity):
         if(self.grounded == False):
             self.yVelo += 1 #apply gravity
         if(self.grounded == True):
-                self.jumps = self.maxJumps
-                #self.yVelo = 0
+            self.jumps = self.maxJumps
+            #self.yVelo = 0
         print(self.grounded)
 
         if(self.yVelo >15):
