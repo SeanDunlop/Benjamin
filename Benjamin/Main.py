@@ -78,6 +78,8 @@ def main():
 
     clock = pygame.time.Clock()
  
+    Terrain.reverse()# LOOK I REVERSED IT
+
     while True:
         
         screen.fill(BACKGROUND_COLOR)
