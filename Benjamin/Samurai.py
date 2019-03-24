@@ -150,11 +150,11 @@ class Samurai(Entity.Entity):
                 self.jumpY = -1 * self.jumpPower
                 if(self.grabDirection == d.right):
                     print("WALLJUMP LEFT")
-                    self.jumpX = -8 * self.groundAccel
+                    self.jumpX = -1 * self.jumpPower
                 #self.setMoveDirection(d.left)
                 if(self.grabDirection == d.left):
                     print("WALLJUMP RIGHT")
-                    self.jumpX = 8 * self.groundAccel
+                    self.jumpX =  self.jumpPower
                 self.grabDirection = d.none
                 #self.setMoveDirection(d.right)#Remove this once acceleration is in
 
