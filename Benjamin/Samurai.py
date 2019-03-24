@@ -56,8 +56,8 @@ class Samurai(Entity.Entity):
 
         self.grabbing = False
         self.grabbed = False
-        self.leftGrabTime = 0
-        self.rightGrabTime = 0
+        self.lastGrab = False
+        self.grabTime = 60
         self.grabDirection = d.none
 
 
@@ -197,9 +197,10 @@ class Samurai(Entity.Entity):
         if(self.grabbed == False):
             if(self.grabTime < 60):
                 self.grabTime = self.grabTime + 1
-    
+        print(self.grabTime)
         if(self.grabbed == True):
             self.grabTime = self.grabTime - 1
+            print(self.grabTime)
             self.jumps = self.maxJumps
             if (self.grabTime <= 0):
                 self.grabbed = False

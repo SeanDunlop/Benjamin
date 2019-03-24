@@ -28,11 +28,11 @@ def main():
     "W       WWWWWWW    W",
     "W         WWW      W",
     "W           V      W",
-    "WWWWW   WWWWWWWWW WW",
+    "WWWWW   WWWWWWWWW  W",
     "W               W  W",
-    "W               WW W",
     "W               W  W",
-    "WS     WWWW       WW",
+    "W               W  W",
+    "WS     WWWW        W",
     "WWWWWWWWWWWWWWWWWWWW"
         ]
     x = y = 0
@@ -46,16 +46,13 @@ def main():
             if col == "S":
                 samx = x
                 samy = y
-                DarkBricks.build(x,y,background)
             if col == "V":
                 Bricks.build(x, y-48, Terrain)
-                DarkBricks.build(x,y,background)
-            if col == " ":
-                DarkBricks.build(x, y, background)
             x += 64
         y += 64
         x = 0
 
+    DarkBricks.build(0,0,background)
     sam = Samurai.Samurai(samx, samy, Collider.Collider(Terrain))
 
     players.add(sam)
