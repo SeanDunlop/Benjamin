@@ -20,7 +20,8 @@ class EntityGroup():
     def drawAll(self):
         for e in self.entities:
             e.group.draw(self.screen)
-
+    def reverse(self):
+        self.entities.reverse()
 
 class Entity():
     def __init__(self, x, y, width, height):
@@ -46,15 +47,15 @@ class Entity():
     def changeHeight(self, height):
         if(height != self.rect.height):
             print("CHANGED HEIGHT")
-            #oldHeight = self.rect.height
-            #dH = (oldHeight - height)
-            bot = self.rect.bottom
+            oldHeight = self.rect.height
+            dH = (oldHeight - height)
+            #bot = self.rect.bottom
             self.rect.height = height
-            self.rect.bottom = bot
-            #self.move(0, dH)
+            #self.rect.bottom = bot
+            self.move(0, dH)
             for key, a in self.animations.items():
                 a.rect.height = height
-                a.rect.bottom = bot
+                #a.rect.bottom = bot
     def moveTo(self, x, y):
         dx = x - self.xpos
         dy = y - self.ypos

@@ -22,14 +22,14 @@ class Samurai(Entity.Entity):
         
         self.maxJumps = 1
         self.jumps = self.maxJumps
-        self.groundAccel = 1
+        self.groundAccel = 4
         self.maxSpeed = 16
         self.jumpPower = 16
         self.groundDecel = 8
-        self.airAccel = 1
+        self.airAccel = 2
         self.slideAccel = 1
 
-        self.slideHeight = 32
+        self.slideHeight = 64
         self.standHeight = 64
 
         self.jumpPressed = False
