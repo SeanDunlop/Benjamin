@@ -2,7 +2,6 @@ import pygame
 import Entity
 class Collider():
     def __init__(self, group1):
-        #self.player = player
         self.obstacles = group1
 
     def doCollision(self, player, dx, dy):

@@ -123,14 +123,13 @@ class Samurai(Entity.Entity):
             self.yVelo += 1 #apply gravity
         if(self.grounded == True):
                 self.jumps = self.maxJumps
-                #self.yVelo = 0
         print(self.grounded)
 
         if(self.yVelo >15):
             self.yVelo = 15
     
     def updateKeys(self):
-        pygame.event.pump()
+        pygame.event.pump()#give it a lil' pump
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_a:
