@@ -29,6 +29,9 @@ class Samurai(Entity.Entity):
         self.airAccel = 2
         self.slideAccel = 1
 
+        self.slideHeight = 32
+        self.standHeight = 64
+
         self.jumpPressed = False
         self.leftPressed = False
         self.rightPressed = False
@@ -84,41 +87,48 @@ class Samurai(Entity.Entity):
             if self.running == True:
                 if(self.sliding == False):
                     if self.moveDirection == d.left:
-                        self.changeHeight(64)
+                        self.changeHeight(self.standHeight)
                         self.changeAnimation('Samurai_run_left')
                     if self.moveDirection == d.right:
-                        self.changeHeight(64)
+                        self.changeHeight(self.standHeight)
                         self.changeAnimation('Samurai_run_right')
                 if(self.sliding == True):
                     if self.moveDirection == d.left:
-                        self.changeHeight(48)
+                        self.changeHeight(self.slideHeight)
                         self.changeAnimation('Samurai_sliding_left')
                     if self.moveDirection == d.right:
-                        self.changeHeight(48)
+                        self.changeHeight(self.slideHeight)
                         self.changeAnimation('Samurai_sliding_right')
             if self.running == False:
                 if self.sliding == False:
                     if self.direction == d.left:
-                        self.changeHeight(64)
+                        self.changeHeight(self.standHeight)
                         self.changeAnimation('Samurai_idle_left')
                     if self.direction == d.right:
-                        self.changeHeight(64)
+                        self.changeHeight(self.standHeight)
                         self.changeAnimation('Samurai_idle_right')
                 if self.sliding == True:
                     if self.direction == d.left:
-                        self.changeHeight(48)
+                        self.changeHeight(self.slideHeight)
                         self.changeAnimation('Samurai_sliding_left')
                     if self.direction == d.right:
-                        self.changeHeight(48)
+                        self.changeHeight(self.slideHeight)
                         self.changeAnimation('Samurai_sliding_right')
         if (self.grounded == False):
-            if self.direction == d.left:
-                self.changeHeight(64)
-                self.changeAnimation('Samurai_falling_left')
-            if self.direction == d.right:
-                self.changeHeight( 64)
-                self.changeAnimation('Samurai_falling_right')
-                
+            if(self.sliding == False):
+                if self.direction == d.left:
+                    self.changeHeight(self.standHeight)
+                    self.changeAnimation('Samurai_falling_left')
+                if self.direction == d.right:
+                    self.changeHeight( self.standHeight)
+                    self.changeAnimation('Samurai_falling_right')
+            if(self.sliding == True):
+                if self.direction == d.left:
+                    self.changeHeight(self.slideHeight)
+                    self.changeAnimation('Samurai_sliding_left')
+                if self.direction == d.right:
+                    self.changeHeight(self.slideHeight)
+                    self.changeAnimation('Samurai_sliding_right')
     def setDirection(self, direction): # set the direction of the samurai
 
         self.direction = direction

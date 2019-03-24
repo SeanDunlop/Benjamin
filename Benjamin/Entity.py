@@ -42,16 +42,19 @@ class Entity():
         self.rect = self.rect.move(dx, dy)
         for key, a in self.animations.items():
             a.move(dx, dy)
+
     def changeHeight(self, height):
         if(height != self.rect.height):
             print("CHANGED HEIGHT")
-            oldHeight = self.rect.height
-            dH = (oldHeight - height)
+            #oldHeight = self.rect.height
+            #dH = (oldHeight - height)
             bot = self.rect.bottom
             self.rect.height = height
-            self.move(0, dH)
+            self.rect.bottom = bot
+            #self.move(0, dH)
             for key, a in self.animations.items():
                 a.rect.height = height
+                a.rect.bottom = bot
     def moveTo(self, x, y):
         dx = x - self.xpos
         dy = y - self.ypos
