@@ -104,12 +104,7 @@ class Samurai(Entity.Entity):
             dir = 1
         self.xVelo = self.speed * dir
 
-        if(self.grounded == False):
-            if (self.yVelo < 10):
-                self.yVelo += 1 #apply gravity
-        if(self.grounded == True):
-            self.jumps = self.maxJumps
-            self.yVelo = 0
+        
         
         groundedFlag = False
         if(self.xVelo != 0):
@@ -120,10 +115,16 @@ class Samurai(Entity.Entity):
         if(self.yVelo != 0):
             self.move(0, self.yVelo)#then move in y
             if self.collider.doCollision(self, 0,self.yVelo):
-                groundedFlag = True
+              groundedFlag = True
 
+        if(self.grounded == False):
+            if (self.yVelo < 10):
+                self.yVelo += 1 #apply gravity
+            else:
+                self.jumps = self.maxJumps
+                self.yVelo = 0
         self.grounded = groundedFlag
-
+        
     
     def updateKeys(self):
         pygame.event.pump()
