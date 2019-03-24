@@ -22,9 +22,9 @@ class Samurai(Entity.Entity):
         
         self.maxJumps = 1
         self.jumps = self.maxJumps
-        self.groundAccel = 4
-        self.maxSpeed = 16
-        self.jumpPower = 16
+        self.groundAccel = 2
+        self.maxSpeed = 12
+        self.jumpPower = 12
         self.groundDecel = 8
         self.airAccel = 2
         self.slideAccel = 1
@@ -56,7 +56,8 @@ class Samurai(Entity.Entity):
 
         self.grabbing = False
         self.grabbed = False
-        self.grabTime = 0
+        self.leftGrabTime = 0
+        self.rightGrabTime = 0
         self.grabDirection = d.none
 
 

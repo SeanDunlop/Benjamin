@@ -12,7 +12,7 @@ import DarkBricks
 
 SIZE = WIDTH, HEIGHT = 1280, 640 #the width and height of our screen
 BACKGROUND_COLOR = pygame.Color('white') #The background colod of our window
-FPS = 60 #Frames per second
+FPS = 24 #Frames per second
 
 def main():
     pygame.init()
@@ -28,11 +28,11 @@ def main():
     "W       WWWWWWW    W",
     "W         WWW      W",
     "W           V      W",
-    "WWWWW   WWWWWWWWW  W",
+    "WWWWW   WWWWWWWWW WW",
     "W               W  W",
+    "W               WW W",
     "W               W  W",
-    "W               W  W",
-    "WS     WWWW        W",
+    "WS     WWWW       WW",
     "WWWWWWWWWWWWWWWWWWWW"
         ]
     x = y = 0
@@ -55,22 +55,7 @@ def main():
             x += 64
         y += 64
         x = 0
-#    for x in range(0, 30):
-#        Dirt.build(64*x, 368, Terrain)
-#
-#
-#    for x in range(15, 20):
-#        Bricks.build(64*x, 208, Terrain)
-#    
-#    for y in range(1, 5):
-#        Bricks.build(672, 64*y, Terrain)
-#
-#    for y in range(4, 8):
-#        Bricks.build(0, 64*y, Terrain)
-#
-#    for x in range(0, 25):
-#        Background.build(128*x, 0, background)
-#
+
     sam = Samurai.Samurai(samx, samy, Collider.Collider(Terrain))
 
     players.add(sam)
