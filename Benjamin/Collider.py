@@ -5,6 +5,7 @@ class Collider():
         #self.player = player
         self.obstacles = group1
     def doCollision(self, player, dx, dy):
+        
         for wall in self.obstacles.getAll():
             self.stolenCollide(player, wall, dx, dy)
 
@@ -69,6 +70,7 @@ class Collider():
         return (bL, bR, bT, bB)
 
     def stolenCollide(self, player, wall, dx, dy):
+        
         if(player.rect.colliderect(wall.rect)):
             
             if(dx > 0):

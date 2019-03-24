@@ -47,5 +47,5 @@ class Entity():
             self.group.add(self.currentAnimation)
     def update(self):
         a = 1
-        #self.animations[self.currentAnimation].update()
+        self.animations[self.currentAnimation].nextFrame()
     

@@ -43,8 +43,9 @@ class Samurai(Entity.Entity):
 
         self.collider = collider
 
-        
-        
+        self.loadAnimations()
+        self.changeAnimation('Samurai_idle_right')
+
     def loadAnimations(self):
         self.load_animation('Samurai_idle_left', 15)
         self.load_animation('Samurai_idle_right', 15)
@@ -122,13 +123,15 @@ class Samurai(Entity.Entity):
             self.yVelo = 0
             print("grounded")
 
-        self.grounded = False
-
+        
+        
         if(self.xVelo != 0):
+            self.grounded = False
             self.move(self.xVelo, 0)#move in x first
             self.collider.doCollision(self, self.xVelo, 0)
 
         if(self.yVelo != 0):
+            self.grounded = False
             self.move(0, self.yVelo)#then move in y
             self.collider.doCollision(self, 0,self.yVelo)
 

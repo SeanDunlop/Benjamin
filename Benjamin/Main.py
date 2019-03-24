@@ -42,7 +42,7 @@ def main():
     platforms.add(platform8)
 
     sam = Samurai.Samurai(50, 50, Collider.Collider(platforms))
-    sam.loadAnimations()
+
     players.add(sam)
     sam.setDirection(d.LEFT)
 
