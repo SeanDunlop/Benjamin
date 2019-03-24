@@ -33,7 +33,7 @@ class Entity():
         self.group = pygame.sprite.Group()
 
     def load_animation(self, name, count):
-        self.animations[name] = Visual.Animation(name, count, self.xpos, self.ypos)
+        self.animations[name] = Visual.Animation(name, count, self.xpos, self.ypos, self.rect)
         return self.animations[name]
 
     def move(self, dx, dy): 
@@ -42,7 +42,16 @@ class Entity():
         self.rect = self.rect.move(dx, dy)
         for key, a in self.animations.items():
             a.move(dx, dy)
-
+    def changeHeight(self, height):
+        if(height != self.rect.height):
+            print("CHANGED HEIGHT")
+            oldHeight = self.rect.height
+            dH = (oldHeight - height)
+            bot = self.rect.bottom
+            self.rect.height = height
+            self.move(0, dH)
+            for key, a in self.animations.items():
+                a.rect.height = height
     def moveTo(self, x, y):
         dx = x - self.xpos
         dy = y - self.ypos

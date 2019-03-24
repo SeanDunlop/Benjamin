@@ -9,7 +9,7 @@ def getPath(name, index):
     return filename
 
 class Animation(pygame.sprite.Sprite):
-    def __init__(self, name, count, x, y):
+    def __init__(self, name, count, x, y, rect):
         super(Animation, self).__init__()
         self.count = count
         self.name = name
@@ -18,7 +18,7 @@ class Animation(pygame.sprite.Sprite):
         self.index = 0
         self.loadImages()
         self.image = self.images[self.index]
-        self.rect = pygame.Rect(x,y,32, 32)
+        self.rect = rect
         self.frameCount = 0
 
     def loadImages(self):
@@ -28,7 +28,9 @@ class Animation(pygame.sprite.Sprite):
 
     def update(self):
         return
-
+    def resize(self, width, height):
+        self.rect.width = width
+        self.rect.height = height
     def nextFrame(self):
         self.index += 1
         if self.index >= len(self.images):

@@ -37,6 +37,7 @@ class Samurai(Entity.Entity):
         self.EXIT = False
 
         self.moveDirection = d.none
+        self.frictionToggle = False
 
         self.yVelo = 0
         self.xVelo = 0
@@ -83,29 +84,39 @@ class Samurai(Entity.Entity):
             if self.running == True:
                 if(self.sliding == False):
                     if self.moveDirection == d.left:
+                        self.changeHeight(64)
                         self.changeAnimation('Samurai_run_left')
                     if self.moveDirection == d.right:
+                        self.changeHeight(64)
                         self.changeAnimation('Samurai_run_right')
                 if(self.sliding == True):
                     if self.moveDirection == d.left:
+                        self.changeHeight(48)
                         self.changeAnimation('Samurai_sliding_left')
                     if self.moveDirection == d.right:
+                        self.changeHeight(48)
                         self.changeAnimation('Samurai_sliding_right')
             if self.running == False:
                 if self.sliding == False:
                     if self.direction == d.left:
+                        self.changeHeight(64)
                         self.changeAnimation('Samurai_idle_left')
                     if self.direction == d.right:
+                        self.changeHeight(64)
                         self.changeAnimation('Samurai_idle_right')
                 if self.sliding == True:
                     if self.direction == d.left:
+                        self.changeHeight(48)
                         self.changeAnimation('Samurai_sliding_left')
                     if self.direction == d.right:
+                        self.changeHeight(48)
                         self.changeAnimation('Samurai_sliding_right')
         if (self.grounded == False):
             if self.direction == d.left:
+                self.changeHeight(64)
                 self.changeAnimation('Samurai_falling_left')
             if self.direction == d.right:
+                self.changeHeight( 64)
                 self.changeAnimation('Samurai_falling_right')
                 
     def setDirection(self, direction): # set the direction of the samurai
@@ -117,9 +128,9 @@ class Samurai(Entity.Entity):
             print("HOP")
             self.jumps = self.jumps - 1
             if(self.grabbed == False):
-                print("NOT GRABBED BUT JUMPING ANYWAYS")
-                #self.yVelo =  -1*self.jumpPower
-                #self.grounded = False
+                #print("NOT GRABBED BUT JUMPING ANYWAYS")
+            #self.yVelo =  -1*self.jumpPower
+            #self.grounded = False
                 self.jumpY = -1 * self.jumpPower
             if(self.grabbed == True):
                 self.grabbed = False
@@ -159,7 +170,12 @@ class Samurai(Entity.Entity):
                 if self.xVelo == 0:
                     accel = 0
                 else:
-                    accel = -1 * dir
+                    accel = 0
+                    if(self.frictionToggle == True):#make friction occur every other tick so you can slider farther
+                        accel = -1 * dir * self.slideAccel
+                    self.frictionToggle = not(self.frictionToggle)
+
+                        
         if(self.grounded == False):
             accel = self.airAccel * dir
 
@@ -177,13 +193,13 @@ class Samurai(Entity.Entity):
             if (self.grabTime <= 0):
                 self.grabbed = False
                 self.grabDirection = d.none
-                print("SLIPPED")
+                #print("SLIPPED")
             if (self.moveDirection != self.grabDirection):
                 self.grabbed = False
         #print(self.grabbed)
         #determine movement conditions in y
 
-        if(accel == 0):
+        if(accel == 0 and self.sliding == False and self.grounded == True):
             if(self.xVelo >0):
                 self.xVelo = self.xVelo - self.groundDecel
                 if(self.xVelo < 0):
@@ -205,9 +221,6 @@ class Samurai(Entity.Entity):
             if(self.xVelo >0):
                 self.xVelo = 1*self.maxSpeed  
         #accelerate in x
-        
-        #self.grabbed = False
-
         
         
         if(self.grounded == False and self.grabbed == False):
