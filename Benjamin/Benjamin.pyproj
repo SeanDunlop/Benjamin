@@ -21,10 +21,16 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Bricks.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Collider.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="directions.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Dirt.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Main.py" />
@@ -39,6 +45,9 @@
     <Compile Include="Visual.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Background\" />
+    <Folder Include="Bricks\" />
+    <Folder Include="Dirt\" />
     <Folder Include="Platform\" />
     <Folder Include="Samurai_falling_left\" />
     <Folder Include="Samurai_falling_right\" />
@@ -52,6 +61,9 @@
     <Folder Include="sunflower\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Background\background1.png" />
+    <Content Include="Bricks\Bricks1.png" />
+    <Content Include="Dirt\Dirt1.png" />
     <Content Include="Platform\Platform1.png" />
     <Content Include="Samurai_falling_left\Samurai_falling_left1.png" />
     <Content Include="Samurai_falling_left\Samurai_falling_left2.png" />

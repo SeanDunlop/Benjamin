@@ -81,20 +81,7 @@ class Samurai(Entity.Entity):
                 
     def setDirection(self, direction): # set the direction of the samurai
 
-        if direction == d.RIGHT:
-            self.direction = d.RIGHT
-            #self.changeAnimation('Samurai_idle_right')
-        if direction == d.LEFT:
-            self.direction = d.LEFT
-            #self.changeAnimation('Samurai_idle_left')
-        if direction == d.DOWN:
-            self.direction = d.DOWN
-            #self.changeAnimation('Samurai_idle_forward')
-        if direction == d.UP:
-            self.direction = d.UP
-            #self.changeAnimation('Samurai_idle_backwords')
-        if direction == d.NONE:
-            self.direction = d.NONE
+        self.direction = direction
         
     def jump(self):
 
