@@ -28,7 +28,7 @@ def main():
     for x in range(15, 20):
         Bricks.build(64*x, 208, Terrain)
     
-    for y in range(1, 10):
+    for y in range(1, 5):
         Bricks.build(672, 64*y, Terrain)
 
     for y in range(4, 8):
