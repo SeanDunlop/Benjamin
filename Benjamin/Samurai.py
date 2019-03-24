@@ -29,7 +29,7 @@ class Samurai(Entity.Entity):
         self.airAccel = 2
         self.slideAccel = 1
 
-        self.slideHeight = 64
+        self.slideHeight = 48
         self.standHeight = 64
 
         self.jumpPressed = False
