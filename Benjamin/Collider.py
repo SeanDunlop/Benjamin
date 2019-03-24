@@ -14,10 +14,8 @@ class Collider():
 
     def Collide(self, player, wall, dx, dy):
         flag = False
-        if(dy == 0):
-            nextSam = pygame.Rect(player.rect.left + dx, player.rect.top, player.rect.width, player.rect.height)
-        else:
-            nextSam = pygame.Rect(player.rect.left + dx, player.rect.top + dy, player.rect.width, player.rect.height)
+
+        nextSam = pygame.Rect(player.rect.left + dx, player.rect.top + dy, player.rect.width, player.rect.height)
         if(nextSam.colliderect(wall.rect)):
             
             if(dx > 0):
@@ -28,7 +26,7 @@ class Collider():
                     player.grabDirection = directions.directions.right
             if(dx < 0):
                 #player.rect.left = wall.rect.right
-                player.moveTo(wall.rect.right -1, player.rect.top)
+                player.moveTo(wall.rect.right, player.rect.top)
                 if(player.grabbing == True and player.grabTime >= 60):
                     player.grabbed = True
                     player.grabDirection = directions.directions.left
