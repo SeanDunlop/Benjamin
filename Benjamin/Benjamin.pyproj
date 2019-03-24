@@ -21,6 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Background.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Bricks.py">
       <SubType>Code</SubType>
     </Compile>
@@ -57,6 +60,8 @@
     <Folder Include="Samurai_idle_right\" />
     <Folder Include="Samurai_run_left\" />
     <Folder Include="Samurai_run_right\" />
+    <Folder Include="Samurai_sliding_left\" />
+    <Folder Include="Samurai_sliding_right\" />
     <Folder Include="static\" />
     <Folder Include="sunflower\" />
   </ItemGroup>
@@ -149,6 +154,15 @@
     <Content Include="Samurai_run_right\Samurai_run_right6.png" />
     <Content Include="Samurai_run_right\Samurai_run_right7.png" />
     <Content Include="Samurai_run_right\Samurai_run_right8.png" />
+    <Content Include="Samurai_sliding_left\Samurai_sliding_left1.png" />
+    <Content Include="Samurai_sliding_left\Samurai_sliding_left2.png" />
+    <Content Include="Samurai_sliding_left\Samurai_sliding_left3.png" />
+    <Content Include="Samurai_sliding_left\Samurai_sliding_left4.png" />
+    <Content Include="Samurai_sliding_right\blank" />
+    <Content Include="Samurai_sliding_right\Samurai_sliding_right1.png" />
+    <Content Include="Samurai_sliding_right\Samurai_sliding_right2.png" />
+    <Content Include="Samurai_sliding_right\Samurai_sliding_right3.png" />
+    <Content Include="Samurai_sliding_right\Samurai_sliding_right4.png" />
     <Content Include="static\background.png" />
     <Content Include="static\box.png" />
     <Content Include="static\Bricks.png" />

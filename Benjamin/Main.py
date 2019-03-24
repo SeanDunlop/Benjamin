@@ -7,6 +7,7 @@ import Platform
 import Collider
 import Bricks
 import Dirt
+import Background
 
 SIZE = WIDTH, HEIGHT = 1200, 400 #the width and height of our screen
 BACKGROUND_COLOR = pygame.Color('white') #The background colod of our window
@@ -19,7 +20,7 @@ def main():
 
     Terrain = Entity.EntityGroup(screen)
     players = Entity.EntityGroup(screen)
-
+    background = Entity.EntityGroup(screen)
 
     for x in range(0, 30):
         Dirt.build(64*x, 368, Terrain)
@@ -27,8 +28,14 @@ def main():
     for x in range(15, 20):
         Bricks.build(64*x, 208, Terrain)
     
-    for y in range(1, 10):
+    for y in range(1, 5):
         Bricks.build(672, 64*y, Terrain)
+
+    for y in range(4, 8):
+        Bricks.build(0, 64*y, Terrain)
+
+    for x in range(0, 25):
+        Background.build(128*x, 0, background)
 
     sam = Samurai.Samurai(50, 50, Collider.Collider(Terrain))
 
@@ -40,8 +47,11 @@ def main():
     while True:
         
         screen.fill(BACKGROUND_COLOR)
+        background.drawAll()
+        background.updateAll()
         Terrain.updateAll()
         Terrain.drawAll()
+        
         players.updateAll()
         players.drawAll()
         if(sam.EXIT):
