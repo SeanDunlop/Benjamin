@@ -122,7 +122,7 @@ class Samurai(Entity.Entity):
             self.yVelo = 0
             print("grounded")
 
-        self.grounded = False
+        #self.grounded = False
 
         if(self.xVelo != 0):
             self.move(self.xVelo, 0)#move in x first
@@ -154,13 +154,16 @@ class Samurai(Entity.Entity):
             self.yVelo = 0
             print("Collided Upwards")
         
-
+        
         if (top == True):#Collided downwards
             self.yVelo = 0
             self.grounded = True
             print("Collided Downwards")
+            falling == False
         if (top == False):
-            self.grounded = False
+            if(falling == True):
+                self.grounded = False
+            falling == True
 
         if (right == True):#Collided on the left
             self.xVelo = 0
