@@ -43,6 +43,8 @@ class Samurai(Entity.Entity):
 
         self.collider = collider
 
+        self.loadAnimations()
+        self.changeAnimation('Samurai_idle_right')
         
         
     def loadAnimations(self):
