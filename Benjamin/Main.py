@@ -80,11 +80,15 @@ def main():
  
     Terrain.reverse()# LOOK I REVERSED IT
 
+    screen.fill(BACKGROUND_COLOR)
+    background.drawAll()
+    background.updateAll()
+
     while True:
         
         screen.fill(BACKGROUND_COLOR)
         background.drawAll()
-        background.updateAll()
+        #background.updateAll()
         Terrain.updateAll()
         Terrain.drawAll()
         
