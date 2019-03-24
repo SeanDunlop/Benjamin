@@ -73,8 +73,8 @@ class Collider():
         return (bL, bR, bT, bB)
 
     def stolenCollide(self, player, wall, dx, dy):
-        
-        if(player.rect.colliderect(wall.rect)):
+        nextSam = pygame.Rect(player.rect.left + dx, player.rect.top + dy, player.rect.width, player.rect.height)
+        if(nextSam.colliderect(wall.rect)):
             
             if(dx > 0):
                 #player.rect.right = wall.rect.left
@@ -86,6 +86,7 @@ class Collider():
                 #player.rect.bottom = wall.rect.top
                 player.moveTo(player.rect.left, wall.rect.top - player.rect.height)
                 player.grounded = True
+                print("grounded")
             if(dy < 0):
                 #player.rect.top = wall.rect.bottom
                 player.moveTo(player.rect.left, wall.rect.bottom)

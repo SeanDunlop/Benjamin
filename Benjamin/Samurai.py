@@ -120,7 +120,6 @@ class Samurai(Entity.Entity):
         if(self.grounded == True):
             self.jumps = self.maxJumps
             self.yVelo = 0
-            print("grounded")
 
         #self.grounded = False
 
