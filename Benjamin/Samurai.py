@@ -37,6 +37,7 @@ class Samurai(Entity.Entity):
         self.EXIT = False
 
         self.moveDirection = d.none
+        self.frictionToggle = False
 
         self.yVelo = 0
         self.xVelo = 0
@@ -160,7 +161,12 @@ class Samurai(Entity.Entity):
                 if self.xVelo == 0:
                     accel = 0
                 else:
-                    accel = -1 * dir
+                    accel = 0
+                    if(self.frictionToggle == True):#make friction occur every other tick so you can slider farther
+                        accel = -1 * dir * self.slideAccel
+                    self.frictionToggle = not(self.frictionToggle)
+
+                        
         if(self.grounded == False):
             accel = self.airAccel * dir
 
@@ -184,7 +190,7 @@ class Samurai(Entity.Entity):
         #print(self.grabbed)
         #determine movement conditions in y
 
-        if(accel == 0):
+        if(accel == 0 and self.sliding == False and self.grounded == True):
             if(self.xVelo >0):
                 self.xVelo = self.xVelo - self.groundDecel
                 if(self.xVelo < 0):
@@ -206,9 +212,6 @@ class Samurai(Entity.Entity):
             if(self.xVelo >0):
                 self.xVelo = 1*self.maxSpeed  
         #accelerate in x
-        
-        #self.grabbed = False
-
         
         
         if(self.grounded == False and self.grabbed == False):
