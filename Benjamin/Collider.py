@@ -14,7 +14,6 @@ class Collider():
 
     def Collide(self, player, wall, dx, dy):
         flag = False
-
         nextSam = pygame.Rect(player.rect.left + dx, player.rect.top + dy, player.rect.width, player.rect.height)
         if(nextSam.colliderect(wall.rect)):
             
