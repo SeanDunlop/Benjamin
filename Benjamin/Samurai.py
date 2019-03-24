@@ -20,13 +20,13 @@ class Samurai(Entity.Entity):
         super().__init__(x ,y, 64, 64)
 
         
-        self.maxJumps = 4
+        self.maxJumps = 1
         self.jumps = self.maxJumps
-        self.groundAccel = 4
+        self.groundAccel = 1
         self.maxSpeed = 16
-        self.jumpPower = 13
+        self.jumpPower = 16
         self.groundDecel = 8
-        self.airAccel = 2
+        self.airAccel = 1
         self.slideAccel = 1
 
         self.jumpPressed = False
@@ -113,16 +113,15 @@ class Samurai(Entity.Entity):
         self.direction = direction
         
     def jump(self):
-        if(self.jumps > 1):
+        if(self.grounded == True or self.grabbed == True):
             print("HOP")
             self.jumps = self.jumps - 1
             if(self.grabbed == False):
                 print("NOT GRABBED BUT JUMPING ANYWAYS")
-            #self.yVelo =  -1*self.jumpPower
-            #self.grounded = False
+                #self.yVelo =  -1*self.jumpPower
+                #self.grounded = False
                 self.jumpY = -1 * self.jumpPower
             if(self.grabbed == True):
-                
                 self.grabbed = False
                 self.grabTime -= 30
                 if(self.grabTime < 0):
@@ -130,11 +129,11 @@ class Samurai(Entity.Entity):
                 self.jumpY = -1 * self.jumpPower
                 if(self.grabDirection == d.right):
                     print("WALLJUMP LEFT")
-                    self.jumpX = -1 * self.jumpPower
+                    self.jumpX = -8 * self.groundAccel
                 #self.setMoveDirection(d.left)
                 if(self.grabDirection == d.left):
                     print("WALLJUMP RIGHT")
-                    self.jumpX = self.jumpPower
+                    self.jumpX = 8 * self.groundAccel
                 self.grabDirection = d.none
                 #self.setMoveDirection(d.right)#Remove this once acceleration is in
 
@@ -166,7 +165,7 @@ class Samurai(Entity.Entity):
 
         #determine movement conditions in x
 
-        print(self.sliding)
+        #print(self.sliding)
 
         if(self.grabbed == False):
             if(self.grabTime < 60):
@@ -174,7 +173,7 @@ class Samurai(Entity.Entity):
     
         if(self.grabbed == True):
             self.grabTime = self.grabTime - 1
-            self.jumps = self.maxJumps -1
+            self.jumps = self.maxJumps
             if (self.grabTime <= 0):
                 self.grabbed = False
                 self.grabDirection = d.none
