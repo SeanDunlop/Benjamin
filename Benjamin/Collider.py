@@ -5,9 +5,12 @@ class Collider():
         #self.player = player
         self.obstacles = group1
     def doCollision(self, player, dx, dy):
-        
+        flag = False
         for wall in self.obstacles.getAll():
-            self.stolenCollide(player, wall, dx, dy)
+            if(self.stolenCollide(player, wall, dx, dy)):
+                flag = True
+        if(flag == False):
+            player.grounded = False
 
 
     def checkAll(self, player, dx, dy):
@@ -87,6 +90,8 @@ class Collider():
                 #player.rect.top = wall.rect.bottom
                 player.moveTo(player.rect.left, wall.rect.bottom)
                 player.yVelo = 0
+            return True
+        return False
 
     def manualCollide(self, player, wall, dx, dy):
 
