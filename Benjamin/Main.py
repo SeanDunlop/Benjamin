@@ -8,6 +8,7 @@ import Collider
 import Bricks
 import Dirt
 import Background
+import DarkBricks
 
 SIZE = WIDTH, HEIGHT = 1280, 640 #the width and height of our screen
 BACKGROUND_COLOR = pygame.Color('white') #The background colod of our window
@@ -30,9 +31,9 @@ def main():
     "WWWWW   WWWWWWWWW  W",
     "W               W  W",
     "W               W  W",
-    "W      WWWW     W  W",
-    "WS    WWWWWW       W",
-    "DDDDDDDDDDDDDDDDDDDD"
+    "W               W  W",
+    "WS     WWWW        W",
+    "WWWWWWWWWWWWWWWWWWWW"
         ]
     x = y = 0
     samx = samy = 0
@@ -45,8 +46,12 @@ def main():
             if col == "S":
                 samx = x
                 samy = y
+                DarkBricks.build(x,y,background)
             if col == "V":
                 Bricks.build(x, y-48, Terrain)
+                DarkBricks.build(x,y,background)
+            if col == " ":
+                DarkBricks.build(x, y, background)
             x += 64
         y += 64
         x = 0

@@ -21,6 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DarkBricks.py" />
     <Compile Include="Background.py">
       <SubType>Code</SubType>
     </Compile>
@@ -51,6 +52,7 @@
     <Folder Include="Background\" />
     <Folder Include="Bricks\" />
     <Folder Include="Dirt\" />
+    <Folder Include="DarkBricks\" />
     <Folder Include="Platform\" />
     <Folder Include="Samurai_falling_left\" />
     <Folder Include="Samurai_falling_right\" />
@@ -68,6 +70,7 @@
   <ItemGroup>
     <Content Include="Background\background1.png" />
     <Content Include="Bricks\Bricks1.png" />
+    <Content Include="DarkBricks\DarkBricks1.png" />
     <Content Include="Dirt\Dirt1.png" />
     <Content Include="Platform\Platform1.png" />
     <Content Include="Samurai_falling_left\Samurai_falling_left1.png" />
