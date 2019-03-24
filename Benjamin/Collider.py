@@ -1,4 +1,5 @@
 import pygame
+import directions
 import Entity
 class Collider():
     def __init__(self, group1):
@@ -22,9 +23,15 @@ class Collider():
             if(dx > 0):
                 #player.rect.right = wall.rect.left
                 player.moveTo(wall.rect.left - player.rect.width ,player.rect.top)
+                if(player.grabbing == True and player.grabTime >= 60):
+                    player.grabbed = True
+                    player.grabDirection = directions.directions.right
             if(dx < 0):
                 #player.rect.left = wall.rect.right
-                player.moveTo(wall.rect.right, player.rect.top)
+                player.moveTo(wall.rect.right -1, player.rect.top)
+                if(player.grabbing == True and player.grabTime >= 60):
+                    player.grabbed = True
+                    player.grabDirection = directions.directions.left
             if(dy > 0):
                 #player.rect.bottom = wall.rect.top
                 player.moveTo(player.rect.left, wall.rect.top - player.rect.height)

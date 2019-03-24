@@ -20,10 +20,12 @@ class Samurai(Entity.Entity):
         super().__init__(x ,y, 64, 64)
 
         
-        self.maxJumps = 30
+        self.maxJumps = 2
         self.jumps = self.maxJumps
-        self.speed = 8
-        self.jumpPower = -13
+        self.speed = 4
+        self.maxSpeed = 16
+        self.jumpPower = 13
+        self.acceleration = 8
 
         self.jumpPressed = False
         self.leftPressed = False
@@ -40,8 +42,11 @@ class Samurai(Entity.Entity):
         self.grounded = False
         self.moving = False
         self.direction = d.none
+
         self.grabbing = False
         self.grabbed = False
+        self.grabTime = 0
+        self.grabDirection = d.none
 
         self.collider = collider
 
@@ -86,10 +91,21 @@ class Samurai(Entity.Entity):
         self.direction = direction
         
     def jump(self):
+        if(self.grabbed == False):
+            self.yVelo =  -1*self.jumpPower
+            self.grounded = False
+        if(self.grabbed == True):
+            self.yVelo = self.jumpPower
+            self.grounded = False
+            if(self.grabDirection == d.right):
+                self.xVelo = self.xVelo - self.jumpPower
+                #self.setMoveDirection(d.left)
 
-        self.yVelo = self.jumpPower
-        self.grounded = False
-        
+            if(self.grabDirection == d.left):
+                self.xVelo = self.xVelo + self.jumpPower
+
+                #self.setMoveDirection(d.right)#Remove this once acceleration is in
+
 
     def update(self):
         super().update()
@@ -104,9 +120,36 @@ class Samurai(Entity.Entity):
             dir = -1
         if self.moveDirection == d.RIGHT:
             dir = 1
-        self.xVelo = self.speed * dir
+        accel = self.speed * dir
+        
+        if(accel == 0):
+            if(self.xVelo >0):
+                self.xVelo = self.xVelo - self.acceleration
+                if(self.xVelo < 0):
+                    self.xVelo = 0
+            if(self.xVelo < 0):
+                self.xVelo = self.xVelo + self.acceleration
+                if(self.xVelo > 0):
+                    self.xVelo = 0
+        print(self.moveDirection)
+
+        self.xVelo = self.xVelo + accel
+        if(abs(self.xVelo) > self.maxSpeed):
+            if(self.xVelo <0):
+                self.xVelo = -1*self.maxSpeed
+            if(self.xVelo >0):
+                self.xVelo = 1*self.maxSpeed
+        #if (abs(self.xVelo) < self.maxSpeed):
+        #    if(abs(self.xVelo + accel) <= self.maxSpeed):
+        #        self.xVelo = self.xVelo + accel #accelerate fully
+        #    if(abs(self.xVelo + accel) > self.maxSpeed):
+                #self.xVelo = self.maxSpeed
+        #        a=1    
+
 
         groundedFlag = False
+        self.grabbed = False
+
         if(self.xVelo != 0):
             self.move(self.xVelo, 0)#move in x first
             if self.collider.doCollision(self, self.xVelo, 0):
@@ -123,10 +166,19 @@ class Samurai(Entity.Entity):
             self.yVelo += 1 #apply gravity
         if(self.grounded == True):
                 self.jumps = self.maxJumps
-        print(self.grounded)
+        #print(self.grounded)
 
-        if(self.grabbed):
+        if(self.grabbed == False):
+            if(self.grabTime < 60):
+                self.grabTime = self.grabTime + 1
+        if(self.grabbed == True):
+            self.grabTime = self.grabTime - 1
             self.yVelo = 0
+            self.jumps = self.maxJumps - 1
+            if (self.grabTime <= 0):
+                self.grabbed = False
+                self.grabDirection = d.none
+
 
         if(self.yVelo >15):
             self.yVelo = 15
@@ -163,6 +215,7 @@ class Samurai(Entity.Entity):
                     #self.fixDirection(d.DOWN, False)
                 if event.key == pygame.K_w:
                     self.grabbing = False
+                    self.grabbed = False
                 if event.key == pygame.K_SPACE:
                     self.jumpPressed = False
 
