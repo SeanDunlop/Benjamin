@@ -4,6 +4,11 @@ class Collider():
     def __init__(self, group1):
         #self.player = player
         self.obstacles = group1
+    def doCollision(self, player, dx, dy):
+        for wall in self.obstacles.getAll():
+            self.stolenCollide(player, wall, dx, dy)
+
+
     def checkAll(self, player, dx, dy):
         topCollide = False
         bottomCollide = False
@@ -62,6 +67,23 @@ class Collider():
         elif(bR):
             entity1.moveTo(entity2.rect.right, entity1.rect.top)
         return (bL, bR, bT, bB)
+
+    def stolenCollide(self, player, wall, dx, dy):
+        if(player.rect.colliderect(wall.rect)):
+            
+            if(dx > 0):
+                #player.rect.right = wall.rect.left
+                player.moveTo(wall.rect.left - player.rect.width ,player.rect.top)
+            if(dx < 0):
+                #player.rect.left = wall.rect.right
+                player.moveTo(wall.rect.right, player.rect.top)
+            if(dy > 0):
+                #player.rect.bottom = wall.rect.top
+                player.moveTo(player.rect.left, wall.rect.top - player.rect.height)
+                player.grounded = True
+            if(dy < 0):
+                #player.rect.top = wall.rect.bottom
+                player.moveTo(player.rect.left, wall.rect.bottom)
 
     def manualCollide(self, player, wall, dx, dy):
 
