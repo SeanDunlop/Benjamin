@@ -21,6 +21,9 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Background.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Bricks.py">
       <SubType>Code</SubType>
     </Compile>

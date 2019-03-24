@@ -40,6 +40,8 @@ class Samurai(Entity.Entity):
         self.grounded = False
         self.moving = False
         self.direction = d.none
+        self.grabbing = False
+        self.grabbed = False
 
         self.collider = collider
 
@@ -104,8 +106,6 @@ class Samurai(Entity.Entity):
             dir = 1
         self.xVelo = self.speed * dir
 
-        
-        
         groundedFlag = False
         if(self.xVelo != 0):
             self.move(self.xVelo, 0)#move in x first
@@ -125,8 +125,12 @@ class Samurai(Entity.Entity):
                 self.jumps = self.maxJumps
         print(self.grounded)
 
+        if(self.grabbed):
+            self.yVelo = 0
+
         if(self.yVelo >15):
             self.yVelo = 15
+
     
     def updateKeys(self):
         pygame.event.pump()#give it a lil' pump
@@ -140,8 +144,7 @@ class Samurai(Entity.Entity):
                     a=1
                     #self.fixDirection(d.DOWN, True)
                 if event.key == pygame.K_w:
-                    a=1
-                    #self.fixDirection(d.UP, True)
+                    self.grabbing = True
                 if event.key == pygame.K_SPACE:
                     if (self.jumpPressed == False):
                         if(self.jumps > 0):
@@ -159,8 +162,7 @@ class Samurai(Entity.Entity):
                     a=1
                     #self.fixDirection(d.DOWN, False)
                 if event.key == pygame.K_w:
-                    a=1
-                    #self.fixDirection(d.UP, False)
+                    self.grabbing = False
                 if event.key == pygame.K_SPACE:
                     self.jumpPressed = False
 
