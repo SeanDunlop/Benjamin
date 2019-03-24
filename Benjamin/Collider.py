@@ -84,6 +84,7 @@ class Collider():
             if(dy < 0):
                 #player.rect.top = wall.rect.bottom
                 player.moveTo(player.rect.left, wall.rect.bottom)
+                player.yVelo = 0
 
     def manualCollide(self, player, wall, dx, dy):
 

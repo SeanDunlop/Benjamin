@@ -22,7 +22,8 @@ class Samurai(Entity.Entity):
         
         self.maxJumps = 30
         self.jumps = self.maxJumps
-        self.speed = 40
+        self.speed = 8
+        self.jumpPower = -13
 
         self.jumpPressed = False
         self.leftPressed = False
@@ -58,7 +59,7 @@ class Samurai(Entity.Entity):
         self.moveDirection = direction
     def fixAnimation(self):
 
-        if (True):
+        if (self.grounded == True):
             if self.moving == True:
                 if self.moveDirection == d.left:
                     self.changeAnimation('Samurai_run_left')
@@ -70,7 +71,7 @@ class Samurai(Entity.Entity):
                 if self.direction == d.right:
                     self.changeAnimation('Samurai_idle_right')
 
-        if (False):
+        if (self.grounded == False):
             if self.direction == d.left:
                 self.changeAnimation('Samurai_falling_left')
             if self.direction == d.right:
@@ -95,7 +96,7 @@ class Samurai(Entity.Entity):
         
     def jump(self):
 
-        self.yVelo = -13
+        self.yVelo = self.jumpPower
         self.grounded = False
         
 
@@ -114,7 +115,7 @@ class Samurai(Entity.Entity):
         self.xVelo = self.speed * dir
 
         if(self.grounded == False):
-            if (self.yVelo < 5):
+            if (self.yVelo < 10):
                 self.yVelo += 1 #apply gravity
         if(self.grounded == True):
             self.jumps = self.maxJumps
