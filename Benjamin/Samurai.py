@@ -105,9 +105,10 @@ class Samurai(Entity.Entity):
     def update(self):
         super().update()
         self.updateKeys()
-        self.doOtherMovement()
+        self.doMovement()
         self.fixAnimation()
-    def doOtherMovement(self):
+
+    def doMovement(self):
 
         dir = 0
         if self.moveDirection == d.LEFT:
@@ -122,60 +123,21 @@ class Samurai(Entity.Entity):
         if(self.grounded == True):
             self.jumps = self.maxJumps
             self.yVelo = 0
-            print("grounded")
-
-        #self.grounded = False
-
+        
+        groundedFlag = False
         if(self.xVelo != 0):
             self.move(self.xVelo, 0)#move in x first
-            self.collider.doCollision(self, self.xVelo, 0)
+            if self.collider.doCollision(self, self.xVelo, 0):
+                groundedFlag = True
 
         if(self.yVelo != 0):
             self.move(0, self.yVelo)#then move in y
-            self.collider.doCollision(self, 0,self.yVelo)
+            if self.collider.doCollision(self, 0,self.yVelo):
+                groundedFlag = True
 
+        self.grounded = groundedFlag
 
-    def doMovement(self):
-
-        dir = 0
-        if self.moveDirection == d.LEFT:
-            dir = -1
-        if self.moveDirection == d.RIGHT:
-            dir = 1
-        self.xVelo = self.speed * dir
-
-        if(self.grounded == False):
-            self.yVelo = self.yVelo + 1
-        if(self.grounded == True):
-            self.jumps = self.maxJumps
-            self.yVelo = 0
-
-        top, bottom, left, right = self.collider.checkAll(self, self.xVelo, self.yVelo)
-        
-        if (bottom == True and self.grounded == False):#Collided upwards
-            self.yVelo = 0
-            print("Collided Upwards")
-        
-        
-        if (top == True):#Collided downwards
-            self.yVelo = 0
-            self.grounded = True
-            print("Collided Downwards")
-            falling == False
-        if (top == False):
-            if(falling == True):
-                self.grounded = False
-            falling == True
-
-        if (right == True):#Collided on the left
-            self.xVelo = 0
-            print("Collided on left")
-        if (left == True):#Collided on the player
-            self.xVelo = 0
-            print("Collided on right")
-        
-        self.move(self.xVelo, self.yVelo)
-
+    
     def updateKeys(self):
         pygame.event.pump()
         for event in pygame.event.get():
@@ -185,9 +147,11 @@ class Samurai(Entity.Entity):
                 if event.key == pygame.K_d:
                     self.fixDirection(d.RIGHT, True)
                 if event.key == pygame.K_s:
-                    self.fixDirection(d.DOWN, True)
+                    a=1
+                    #self.fixDirection(d.DOWN, True)
                 if event.key == pygame.K_w:
-                    self.fixDirection(d.UP, True)
+                    a=1
+                    #self.fixDirection(d.UP, True)
                 if event.key == pygame.K_SPACE:
                     if (self.jumpPressed == False):
                         if(self.jumps > 0):
@@ -202,9 +166,11 @@ class Samurai(Entity.Entity):
                 if event.key == pygame.K_d:
                     self.fixDirection(d.RIGHT, False)
                 if event.key == pygame.K_s:
-                    self.fixDirection(d.DOWN, False)
+                    a=1
+                    #self.fixDirection(d.DOWN, False)
                 if event.key == pygame.K_w:
-                    self.fixDirection(d.UP, False)
+                    a=1
+                    #self.fixDirection(d.UP, False)
                 if event.key == pygame.K_SPACE:
                     self.jumpPressed = False
 

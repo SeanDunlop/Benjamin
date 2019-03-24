@@ -30,6 +30,7 @@ def main():
     
     for y in range(1, 10):
         Platform.build(672, 32*y, platforms)
+
     sam = Samurai.Samurai(50, 50, Collider.Collider(platforms))
 
     players.add(sam)
