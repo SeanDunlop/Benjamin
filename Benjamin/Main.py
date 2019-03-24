@@ -21,9 +21,15 @@ def main():
     Terrain = Entity.EntityGroup(screen)
     players = Entity.EntityGroup(screen)
     background = Entity.EntityGroup(screen)
+    
+    level = [
+             "",
+             ""
+             ]
 
     for x in range(0, 30):
         Dirt.build(64*x, 368, Terrain)
+
 
     for x in range(15, 20):
         Bricks.build(64*x, 208, Terrain)
