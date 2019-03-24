@@ -20,7 +20,7 @@ class Samurai(Entity.Entity):
         super().__init__(x ,y, 64, 64)
 
         
-        self.maxJumps = 4
+        self.maxJumps = 2
         self.jumps = self.maxJumps
         self.groundAccel = 4
         self.maxSpeed = 16
@@ -84,29 +84,39 @@ class Samurai(Entity.Entity):
             if self.running == True:
                 if(self.sliding == False):
                     if self.moveDirection == d.left:
+                        self.changeHeight(64)
                         self.changeAnimation('Samurai_run_left')
                     if self.moveDirection == d.right:
+                        self.changeHeight(64)
                         self.changeAnimation('Samurai_run_right')
                 if(self.sliding == True):
                     if self.moveDirection == d.left:
+                        self.changeHeight(48)
                         self.changeAnimation('Samurai_sliding_left')
                     if self.moveDirection == d.right:
+                        self.changeHeight(48)
                         self.changeAnimation('Samurai_sliding_right')
             if self.running == False:
                 if self.sliding == False:
                     if self.direction == d.left:
+                        self.changeHeight(64)
                         self.changeAnimation('Samurai_idle_left')
                     if self.direction == d.right:
+                        self.changeHeight(64)
                         self.changeAnimation('Samurai_idle_right')
                 if self.sliding == True:
                     if self.direction == d.left:
+                        self.changeHeight(48)
                         self.changeAnimation('Samurai_sliding_left')
                     if self.direction == d.right:
+                        self.changeHeight(48)
                         self.changeAnimation('Samurai_sliding_right')
         if (self.grounded == False):
             if self.direction == d.left:
+                self.changeHeight(64)
                 self.changeAnimation('Samurai_falling_left')
             if self.direction == d.right:
+                self.changeHeight( 64)
                 self.changeAnimation('Samurai_falling_right')
                 
     def setDirection(self, direction): # set the direction of the samurai
@@ -115,10 +125,10 @@ class Samurai(Entity.Entity):
         
     def jump(self):
         if(self.jumps > 1):
-            print("HOP")
+            #print("HOP")
             self.jumps = self.jumps - 1
             if(self.grabbed == False):
-                print("NOT GRABBED BUT JUMPING ANYWAYS")
+                #print("NOT GRABBED BUT JUMPING ANYWAYS")
             #self.yVelo =  -1*self.jumpPower
             #self.grounded = False
                 self.jumpY = -1 * self.jumpPower
@@ -172,7 +182,7 @@ class Samurai(Entity.Entity):
 
         #determine movement conditions in x
 
-        print(self.sliding)
+        #print(self.sliding)
 
         if(self.grabbed == False):
             if(self.grabTime < 60):
@@ -184,7 +194,7 @@ class Samurai(Entity.Entity):
             if (self.grabTime <= 0):
                 self.grabbed = False
                 self.grabDirection = d.none
-                print("SLIPPED")
+                #print("SLIPPED")
             if (self.moveDirection != self.grabDirection):
                 self.grabbed = False
         #print(self.grabbed)
