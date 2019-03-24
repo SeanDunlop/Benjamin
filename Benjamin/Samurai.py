@@ -118,13 +118,14 @@ class Samurai(Entity.Entity):
               groundedFlag = True
 
         if(self.grounded == False):
-            if (self.yVelo < 10):
+            if (self.yVelo < 100):
                 self.yVelo += 1 #apply gravity
             else:
                 self.jumps = self.maxJumps
                 self.yVelo = 0
         self.grounded = groundedFlag
-        
+        if(self.yVelo >10):
+            self.yVelo = 10
     
     def updateKeys(self):
         pygame.event.pump()
