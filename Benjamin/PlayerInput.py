@@ -1,7 +1,7 @@
 #!/usr/bin/python
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 import time
-from pynput.keyboard import Key, Controller
+#from pynput.keyboard import Key, Controller
 
 class PlayerInput:
         

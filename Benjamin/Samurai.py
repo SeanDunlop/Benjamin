@@ -4,7 +4,7 @@ import Entity
 import directions
 import sys
 import PlayerInput
-from pynput.keyboard import Key, Controller
+#from pynput.keyboard import Key, Controller
 false = False
 true = True
 
@@ -70,8 +70,8 @@ class Samurai(Entity.Entity):
         self.loadAnimations()
         self.changeAnimation('Samurai_idle_right')
         
-        self.controller = PlayerInput.PlayerInput()
-        self.keyboard = Controller()
+        #self.controller = PlayerInput.PlayerInput()
+        #self.keyboard = Controller()
 
     def loadAnimations(self):
         self.load_animation('Samurai_idle_left', 15)
@@ -219,7 +219,7 @@ class Samurai(Entity.Entity):
 
     def update(self):
         super().update()
-        self.checkController()
+        #self.checkController()
         self.updateKeys()
         self.doMovement()
         self.fixAnimation()
