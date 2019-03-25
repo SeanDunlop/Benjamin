@@ -53,7 +53,22 @@ def main():
     "WWWWWWWWWWWWWWWWWWWWWW"
         ]
 
-    levels = [level0, level1]
+    level2 = [
+    "WWWWWWWWWWWWWWWWWWWWWW",
+    "WWWWWWWWWWWWWWWWWWWWWW",
+    "WWWWWWWWWWWWWWWWWWWWWW",
+    "WWWWW     W     WWWWWW",
+    "WWWWW     W     WWWWWW",
+    "WWWWW S   V     WWWWWW",
+    "WWWWWWWWWWWWWWWWWWWWWW",
+    "WWWWWWWWWWWWWWWWWWWWWW",
+    "WWWWWWWWWWWWWWWWWWWWWW",
+    "WWWWWWWWWWWWWWWWWWWWWW",
+    "WWWWWWWWWWWWWWWWWWWWWW",
+    "WWWWWWWWWWWWWWWWWWWWWW"
+        ]
+
+    levels = [level0, level1, level2]
 
     Terrain, players, background, sam = loadMap(levels[0], screen)
 
@@ -75,10 +90,8 @@ def main():
         players.drawAll()
         if(sam.EXIT):
             break
-        if(sam.LEVEL == 1):
-            Terrain, players, background, sam = loadMap(levels[0], screen)
-        if(sam.LEVEL == 2):
-            Terrain, players, background, sam = loadMap(levels[1], screen)
+        if(sam.LEVEL != 0):
+            Terrain, players, background, sam = loadMap(levels[sam.LEVEL - 1], screen)
         pygame.display.update()
         clock.tick(FPS)
 def loadMap(level, screen):
@@ -96,7 +109,7 @@ def loadMap(level, screen):
                 samx = x
                 samy = y
             if col == "V":
-                Bricks.build(x, y-32, Terrain)
+                Bricks.build(x, y-48, Terrain)
             x += 64
         y += 64
         x = -48

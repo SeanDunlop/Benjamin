@@ -317,6 +317,8 @@ class Samurai(Entity.Entity):
                     self.LEVEL = 1;
                 if event.key == pygame.K_2:
                     self.LEVEL = 2;
+                if event.key == pygame.K_3:
+                    self.LEVEL = 3;
                 if event.key == pygame.K_ESCAPE:
                     self.EXIT = True
             if event.type == pygame.KEYUP:
