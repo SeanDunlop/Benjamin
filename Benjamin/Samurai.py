@@ -4,7 +4,7 @@ import Entity
 import directions
 import sys
 import PlayerInput
-#from pynput.keyboard import Key, Controller
+from pynput.keyboard import Key, Controller
 false = False
 true = True
 
@@ -75,8 +75,8 @@ class Samurai(Entity.Entity):
         self.loadAnimations()
         self.changeAnimation('Samurai_idle_right')
         
-        #self.controller = PlayerInput.PlayerInput()
-        #self.keyboard = Controller()
+        self.controller = PlayerInput.PlayerInput()
+        self.keyboard = Controller()
         #Look a comment
     def loadAnimations(self):
         self.load_animation('Samurai_idle_left', 15)
@@ -233,7 +233,7 @@ class Samurai(Entity.Entity):
 
     def update(self):
         super().update()
-        #self.checkController()
+        self.checkController()
         self.updateKeys()
         self.doMovement()
         self.fixAnimation()
@@ -243,10 +243,10 @@ class Samurai(Entity.Entity):
         if self.energy < self.maxEnergy and self.dashing == False:
             self.energy +=1
             print("LIGHTS OFF")
-            #controller.setLightButton2(False)
+            self.controller.setLightButton2(False)
         if(self.energy == self.maxEnergy):
             print("LIGHTS ON")
-            #controller.setLightButton2(True)
+            self.controller.setLightButton2(True)
 
         dir = 0
         if self.moveDirection == d.LEFT:
