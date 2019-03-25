@@ -81,7 +81,8 @@ class Samurai(Entity.Entity):
         self.load_animation('Samurai_run_right', 8)
         self.load_animation('Samurai_sliding_right', 4)
         self.load_animation('Samurai_sliding_left', 4)
-
+        self.load_animation('Samurai_Wall_Left', 15)
+        self.load_animation('Samurai_Wall_Right', 15)
 
     def setMoveDirection(self, direction):
         self.moveDirection = direction
@@ -120,19 +121,27 @@ class Samurai(Entity.Entity):
                         self.changeAnimation('Samurai_sliding_right')
         if (self.grounded == False):
             if(self.sliding == False):
-                if self.direction == d.left:
-                    self.changeHeight(self.standHeight)
-                    self.changeAnimation('Samurai_falling_left')
-                if self.direction == d.right:
-                    self.changeHeight( self.standHeight)
-                    self.changeAnimation('Samurai_falling_right')
-            if(self.sliding == True):
-                if self.direction == d.left:
-                    self.changeHeight(self.slideHeight)
-                    self.changeAnimation('Samurai_sliding_left')
-                if self.direction == d.right:
-                    self.changeHeight(self.slideHeight)
-                    self.changeAnimation('Samurai_sliding_right')
+                if(self.grabbed == True):
+                    if self.grabDirection == d.right:
+                        self.changeHeight(self.standHeight)
+                        self.changeAnimation('Samurai_Wall_Right')
+                    if self.grabDirection == d.left:
+                        self.changeHeight(self.standHeight)
+                        self.changeAnimation('Samurai_Wall_Left')
+                if(self.grabbed == False):
+                    if self.direction == d.left:
+                        self.changeHeight(self.standHeight)
+                        self.changeAnimation('Samurai_falling_left')
+                    if self.direction == d.right:
+                        self.changeHeight( self.standHeight)
+                        self.changeAnimation('Samurai_falling_right')
+                if(self.sliding == True):
+                    if self.direction == d.left:
+                        self.changeHeight(self.slideHeight)
+                        self.changeAnimation('Samurai_sliding_left')
+                    if self.direction == d.right:
+                        self.changeHeight(self.slideHeight)
+                        self.changeAnimation('Samurai_sliding_right')
     def setDirection(self, direction): # set the direction of the samurai
 
         self.direction = direction
