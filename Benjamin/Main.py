@@ -10,6 +10,7 @@ import Dirt
 import Background
 import DarkBricks
 import Scull
+import RPi.GPIO as GPIO
 
 SIZE = WIDTH, HEIGHT = 1312, 670 #the width and height of our screen
 BACKGROUND_COLOR = pygame.Color('white') #The background colod of our window
@@ -142,13 +143,14 @@ def main():
         if(sam.LEVEL != 0):
             Terrain, players, background, sam, scullx, scully = loadMap(levels[sam.LEVEL - 1], screen)
         if(sam.rect.colliderect(pygame.Rect(scullx,scully,64,64))):
-            if(level >= 5):
+            if(level >= 8):
                 level = 0
             Terrain, players, background, sam, scullx, scully = loadMap(levels[level], screen)
             level += 1
         pygame.display.update()
         clock.tick(FPS)
 def loadMap(level, screen):
+    GPIO.cleanup()
     Terrain = Entity.EntityGroup(screen)
     players = Entity.EntityGroup(screen)
     background = Entity.EntityGroup(screen)
