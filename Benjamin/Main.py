@@ -73,8 +73,8 @@ def main():
 
     level2 = [
     "WWWWWWWWWWWWWWWWWWWWWW",
-    "WWWWWWW        WWWWWWW",
-    "WWWWWWW WWWWWW WWWWWWW",
+    "WWWWWWWBBBBBBBBWWWWWWW",
+    "WWWWWWWBWWWWWWBWWWWWWW",
     "WWWWW    WWW    WWWWWW",
     "WWWWW     W     WWWWWW",
     "WWWWW S   V   O WWWWWW",
@@ -134,7 +134,8 @@ def loadMap(level, screen):
     Terrain = Entity.EntityGroup(screen)
     players = Entity.EntityGroup(screen)
     background = Entity.EntityGroup(screen)
-
+    
+    DarkBricks.build(0,0,background)
     x = y = -48
     samx = samy = 0
     scullx = scully = 0
@@ -150,11 +151,12 @@ def loadMap(level, screen):
             if col == "O":
                 scullx = x
                 scully = y
+            if col == "B":
+                Bricks.build(x, y, background)
             x += 64
         y += 64
         x = -48
 
-    DarkBricks.build(0,0,background)
     sam = Samurai.Samurai(samx, samy, Collider.Collider(Terrain))
     sam.setDirection(directions.directions.LEFT)
     scull = Scull.build(scullx, scully, background)
