@@ -77,7 +77,7 @@ class Samurai(Entity.Entity):
         
         #self.controller = PlayerInput.PlayerInput()
         #self.keyboard = Controller()
-
+        #Look a comment
     def loadAnimations(self):
         self.load_animation('Samurai_idle_left', 15)
         self.load_animation('Samurai_idle_right', 15)
