@@ -12,15 +12,34 @@ class Collider():
                 flag = True
         return flag
 
-    def checkHead(self, player, diff):
-        initalCount = self.countCollide(player.rect)
-        tallPlayer = pygame.Rect(player.rect.left, player.rect.top - diff, player.rect.width, player.rect.height)
-        finalCount = self.countCollide(tallPlayer)
-        return (finalCount > initalCount)
-    def countCollide(self, rect):
+    def checkHead(self, player, newHeight):
+        #get normal collide count
+        #get collide count except player rect is taller
+        #compare counts
+        #if second is higher, break ya neck
+        firstcount = self.countCollide(player, player.xVelo, player.yVelo)
+        heightDiff = newHeight - player.rect.height
+        tallNextSam = pygame.Rect(player.rect.left, player.rect.top - heightDiff, player.rect.width, player.rect.height + heightDiff)
+        secondcount = self.countRectCollide(tallNextSam, player.xVelo, player.yVelo)
+        if(secondcount > firstcount):
+            print("STOP RIGHT THERE, COWBOY")
+            return True
+        else:
+            return False
+
+
+    def countRectCollide(self, rect, dx, dy):
+        nextSam = pygame.Rect(rect.left + dx, rect.top + dy, rect.width, rect.height)
         count = 0
         for wall in self.obstacles.getAll():
-            if rect.colliderect(wall.rect):
+            if wall.rect.colliderect(nextSam):
+                count +=1
+        return count
+    def countCollide(self, player, dx, dy):
+        nextSam = pygame.Rect(player.rect.left + dx, player.rect.top + dy, player.rect.width, player.rect.height)
+        count = 0
+        for wall in self.obstacles.getAll():
+            if wall.rect.colliderect(nextSam):
                 count +=1
         return count
 
@@ -70,7 +89,8 @@ class Collider():
                 flag = True
             if(dy < 0):
                 #player.rect.top = wall.rect.bottom
-                player.moveTo(player.rect.left, wall.rect.bottom)
+                if(player.rect.top + player.rect.height != wall.rect.bottom):
+                    player.moveTo(player.rect.left, wall.rect.bottom)
                 player.yVelo = 0
                 print("My HEAD")
         return flag
