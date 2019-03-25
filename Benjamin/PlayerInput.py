@@ -1,7 +1,7 @@
 #!/usr/bin/python
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 import time
-from pynput.keyboard import Key, Controller
+#from pynput.keyboard import Key, Controller
 
 class PlayerInput:
         
@@ -142,7 +142,9 @@ class PlayerInput:
             else:
                 GPIO.output(16, GPIO.LOW)    
 
-
+    #CLEANS UP PORTS
+    def cleanUp():
+        GPIO.cleanup()
 #MAIN FOR TESTING
 if __name__ == "__main__":
     print ("Testing GPIO inputs")
