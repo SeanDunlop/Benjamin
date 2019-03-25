@@ -38,6 +38,7 @@ class Samurai(Entity.Entity):
         self.rightPressed = False
         self.downPressed = False
         self.upPressed = False
+        self.dashPressed = False
 
         self.EXIT = False
         self.LEVEL = 0;
@@ -67,6 +68,7 @@ class Samurai(Entity.Entity):
 
         self.maxEnergy = 120
         self.energy = 120
+        self.dashing = False
 
         self.collider = collider
 
@@ -208,10 +210,13 @@ class Samurai(Entity.Entity):
                 self.grabDirection = d.none
     
     def dash(self):
-        if(self.direction == d.left):
-            self.jumpX = -1 * self.jumpPower
-        if(self.direction == d.right):
-            self.jumpX = 1 * self.jumpPower
+        if self.dashing == False:
+            if self.energy == self.maxEnergy:
+                self.dashing = True
+                #if(self.direction == d.left):
+                    #self.jumpX = -1 * 25
+                #if(self.direction == d.right):
+                    #self.jumpX = 1 * 25
 
     def checkSliding(self):
         
@@ -234,6 +239,13 @@ class Samurai(Entity.Entity):
         self.fixAnimation()
 
     def doMovement(self):
+
+        if self.energy < self.maxEnergy and self.dashing == False:
+            self.energy +=1
+            #controller.setLightButton2(False)
+        if(self.energy == self.maxEnergy):
+            #controller.setLightButton2(True)
+            a = 1
 
         dir = 0
         if self.moveDirection == d.LEFT:
@@ -290,15 +302,26 @@ class Samurai(Entity.Entity):
             self.xVelo = self.jumpX
             self.jumpX = 0
 
-        if(abs(self.xVelo) > self.maxSpeed):
-            if(self.xVelo <0):
-                self.xVelo = -1*self.maxSpeed
-            if(self.xVelo >0):
-                self.xVelo = 1*self.maxSpeed  
+        if(self.dashing == False):
+            if(abs(self.xVelo) > self.maxSpeed):
+                if(self.xVelo <0):
+                    self.xVelo = -1*self.maxSpeed
+                if(self.xVelo >0):
+                    self.xVelo = 1*self.maxSpeed  
+        if(self.dashing == True):
+            if self.direction == d.left:
+                dir = -1
+            if self.direction == d.right:
+                dir = 1
+            self.xVelo = dir * 30
+            self.energy -= 10
+            if(self.energy <= 0):
+                self.energy = 0
+                self.dashing = False
         #accelerate in x
         
         
-        if(self.grounded == False and self.grabbed == False):
+        if(self.grounded == False and self.grabbed == False and self.dashing == False):
             self.yVelo += 1 #apply gravity
         if(self.grounded == True):
             self.jumps = self.maxJumps
@@ -359,6 +382,10 @@ class Samurai(Entity.Entity):
                         #print("S P A C E   B A R")
                         self.jump()
                     self.jumpPressed = True
+                if event.key == pygame.K_q:
+                    if(self.dashPressed == False):
+                        self.dash()
+                    self.dashPressed = True
                 if event.key == pygame.K_1:
                     self.LEVEL = 1;
                 if event.key == pygame.K_2:
@@ -387,8 +414,8 @@ class Samurai(Entity.Entity):
                     #print("LET GO")
                 if event.key == pygame.K_SPACE:
                     self.jumpPressed = False
-
-    
+                if event.key == pygame.K_q:
+                    self.dashPressed = False
     
     def fixDirection(self, direction, down):
         if down == True:
