@@ -183,7 +183,7 @@ if __name__ == "__main__":
 
         buttonInput.setLightButton1(True)
         buttonInput.setLightButton2(False)
-        time.sleep(1)
+        time.sleep(2)
         buttonInput.setLightButton1(False)
         buttonInput.setLightButton2(True)
         time.sleep(1)
