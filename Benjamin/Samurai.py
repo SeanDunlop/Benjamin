@@ -24,7 +24,7 @@ class Samurai(Entity.Entity):
         self.jumps = self.maxJumps
         self.groundAccel = 4
         self.maxSpeed = 12
-        self.jumpPower = 12
+        self.jumpPower = 14
         self.groundDecel = 8
         self.airAccel = 2
         self.slideAccel = 1
@@ -254,6 +254,7 @@ class Samurai(Entity.Entity):
             self.yVelo += 1 #apply gravity
         if(self.grounded == True):
             self.jumps = self.maxJumps
+            self.yVelo = 0
         if(self.grabbed == True):
             self.yVelo = 0
         if(self.jumpY != 0):
@@ -269,20 +270,24 @@ class Samurai(Entity.Entity):
                 self.yVelo = -15
 
 
-        groundedFlag = False #assume not on ground to start
-
+        #assume not on ground to start
+        print(self.yVelo)
         if(self.xVelo != 0):
             self.move(self.xVelo, 0)#move in x first
             if self.collider.doCollision(self, self.xVelo, 0):
                 groundedFlag = True
-
+        groundedFlag = False
         if(self.yVelo != 0):
+            
             self.move(0, self.yVelo)#then move in y
             if self.collider.doCollision(self, 0,self.yVelo):
               groundedFlag = True
 
-        self.grounded = groundedFlag
-
+            self.grounded = groundedFlag
+        else:
+            if self.collider.doCollision(self, 0,1):
+              groundedFlag = True
+            self.grounded = groundedFlag
     def updateKeys(self):
         pygame.event.pump()#give it a lil' pump
         for event in pygame.event.get():

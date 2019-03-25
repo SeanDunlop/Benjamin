@@ -63,13 +63,14 @@ class Collider():
                         player.lastGrab = False
             if(dy > 0):
                 #player.rect.bottom = wall.rect.top
-                player.moveTo(player.rect.left, wall.rect.top - player.rect.height - 1)
+                #if(player.rect.bottom < wall.rect.bottom):
+                    #player.moveTo(player.rect.left, wall.rect.bottom)
+                #else:                    
+                player.moveTo(player.rect.left, wall.rect.top - player.rect.height)
                 flag = True
             if(dy < 0):
                 #player.rect.top = wall.rect.bottom
                 player.moveTo(player.rect.left, wall.rect.bottom)
                 player.yVelo = 0
                 print("My HEAD")
-            if(dy == 0):
-                print("OOF")
         return flag
