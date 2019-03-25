@@ -242,10 +242,11 @@ class Samurai(Entity.Entity):
 
         if self.energy < self.maxEnergy and self.dashing == False:
             self.energy +=1
+            print("LIGHTS OFF")
             #controller.setLightButton2(False)
         if(self.energy == self.maxEnergy):
+            print("LIGHTS ON")
             #controller.setLightButton2(True)
-            a = 1
 
         dir = 0
         if self.moveDirection == d.LEFT:
