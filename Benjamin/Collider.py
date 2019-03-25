@@ -12,6 +12,18 @@ class Collider():
                 flag = True
         return flag
 
+    def checkHead(self, player, diff):
+        initalCount = self.countCollide(player.rect)
+        tallPlayer = pygame.Rect(player.rect.left, player.rect.top - diff, player.rect.width, player.rect.height)
+        finalCount = self.countCollide(tallPlayer)
+        return (finalCount > initalCount)
+    def countCollide(self, rect):
+        count = 0
+        for wall in self.obstacles.getAll():
+            if rect.colliderect(wall.rect):
+                count +=1
+        return count
+
     def Collide(self, player, wall, dx, dy):
         flag = False
         nextSam = pygame.Rect(player.rect.left + dx, player.rect.top + dy, player.rect.width, player.rect.height)
@@ -51,11 +63,13 @@ class Collider():
                         player.lastGrab = False
             if(dy > 0):
                 #player.rect.bottom = wall.rect.top
-                player.moveTo(player.rect.left, wall.rect.top - player.rect.height)
+                player.moveTo(player.rect.left, wall.rect.top - player.rect.height - 1)
                 flag = True
             if(dy < 0):
                 #player.rect.top = wall.rect.bottom
                 player.moveTo(player.rect.left, wall.rect.bottom)
                 player.yVelo = 0
-        
+                print("My HEAD")
+            if(dy == 0):
+                print("OOF")
         return flag

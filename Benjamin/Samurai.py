@@ -20,9 +20,9 @@ class Samurai(Entity.Entity):
         super().__init__(x ,y, 64, 64)
 
         
-        self.maxJumps = 1
+        self.maxJumps = 3
         self.jumps = self.maxJumps
-        self.groundAccel = 2
+        self.groundAccel = 4
         self.maxSpeed = 12
         self.jumpPower = 12
         self.groundDecel = 8
@@ -40,7 +40,7 @@ class Samurai(Entity.Entity):
         self.EXIT = False
 
         self.moveDirection = d.none
-        self.frictionToggle = False
+        self.frictionToggle = 0
 
         self.yVelo = 0
         self.xVelo = 0
@@ -48,10 +48,11 @@ class Samurai(Entity.Entity):
         self.jumpY = 0
         self.jumpX = 0
 
-
+        self.blocked = False
         self.grounded = False
         self.running = False
         self.direction = d.none
+        self.trySliding = False
         self.sliding = False
 
         self.grabbing = False
@@ -158,7 +159,18 @@ class Samurai(Entity.Entity):
                     self.jumpX =  self.jumpPower
                 self.grabDirection = d.none
                 #self.setMoveDirection(d.right)#Remove this once acceleration is in
-
+    def checkSliding(self):
+        
+        if(self.sliding == False and self.blocked == True):
+            self.sliding == True
+        if(self.trySliding == False):
+            #self.blocked = self.collider.checkHead(self, self.standHeight - self.slideHeight)
+            if(self.blocked == False):
+                self.sliding = False
+            if(self.blocked == True):
+                self.sliding = True
+        if(self.trySliding == True):
+            self.sliding = True
 
     def update(self):
         super().update()
@@ -174,6 +186,8 @@ class Samurai(Entity.Entity):
         if self.moveDirection == d.RIGHT:
             dir = 1
 
+        self.checkSliding()
+
         if(self.grounded == True):
             if(self.sliding == False):
                 accel = self.groundAccel * dir
@@ -182,11 +196,12 @@ class Samurai(Entity.Entity):
                     accel = 0
                 else:
                     accel = 0
-                    if(self.frictionToggle == True):#make friction occur every other tick so you can slider farther
+                    if(self.frictionToggle == 0):#make friction occur every other tick so you can slider farther
                         accel = -1 * dir * self.slideAccel
-                    self.frictionToggle = not(self.frictionToggle)
+                    self.frictionToggle = (self.frictionToggle + 1)%3
 
-                        
+            
+                    
         if(self.grounded == False):
             accel = self.airAccel * dir
 
@@ -197,17 +212,17 @@ class Samurai(Entity.Entity):
         if(self.grabbed == False):
             if(self.grabTime < 60):
                 self.grabTime = self.grabTime + 1
-        print(self.grabTime)
+        #print(self.grabTime)
         if(self.grabbed == True):
             self.grabTime = self.grabTime - 1
-            print(self.grabTime)
+            #print(self.grabTime)
             self.jumps = self.maxJumps
             if (self.grabTime <= 0):
                 self.grabbed = False
                 self.grabDirection = d.none
                 #print("SLIPPED")
             if (self.moveDirection != self.grabDirection):
-                self.grabbed = False
+                self.jump()
         #print(self.grabbed)
         #determine movement conditions in y
 
@@ -277,7 +292,7 @@ class Samurai(Entity.Entity):
                 if event.key == pygame.K_d:
                     self.fixDirection(d.RIGHT, True)
                 if event.key == pygame.K_s:
-                    self.sliding = True
+                    self.trySliding = True
                     #self.fixDirection(d.DOWN, True)
                 if event.key == pygame.K_w:
                     self.grabbing = True
@@ -295,7 +310,7 @@ class Samurai(Entity.Entity):
                 if event.key == pygame.K_d:
                     self.fixDirection(d.RIGHT, False)
                 if event.key == pygame.K_s:
-                    self.sliding = False
+                    self.trySliding = False
                     #self.fixDirection(d.DOWN, False)
                 if event.key == pygame.K_w:
                     self.grabbing = False
