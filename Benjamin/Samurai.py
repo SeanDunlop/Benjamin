@@ -169,7 +169,7 @@ class Samurai(Entity.Entity):
                     print("WALLJUMP RIGHT")
                     self.jumpX =  self.jumpPower
                 self.grabDirection = d.none
-                #self.setMoveDirection(d.right)#Remove this once acceleration is in
+
     def checkSliding(self):
         
         if(self.sliding == False and self.blocked == True):
@@ -210,6 +210,8 @@ class Samurai(Entity.Entity):
                     if(self.frictionToggle == 0):#make friction occur every other tick so you can slide farther
                         accel = -1 * dir * self.slideAccel
                     self.frictionToggle = (self.frictionToggle + 1)%3
+                if (self.blocked == True and self.xVelo == 0):
+                    accel = dir
            
         if(self.grounded == False):
             accel = self.airAccel * dir
