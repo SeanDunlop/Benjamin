@@ -19,7 +19,7 @@ class Collider():
         #if second is higher, break ya neck
         firstcount = self.countCollide(player, player.xVelo, player.yVelo)
         heightDiff = newHeight - player.rect.height
-        tallNextSam = pygame.Rect(player.rect.left, player.rect.top - heightDiff, player.rect.width, player.rect.height + heightDiff)
+        tallNextSam = pygame.Rect(player.rect.left + player.xVelo, player.rect.top - heightDiff + player.yVelo, player.rect.width, player.rect.height + heightDiff)
         secondcount = self.countRectCollide(tallNextSam, player.xVelo, player.yVelo)
         if(secondcount > firstcount):
             print("STOP RIGHT THERE, COWBOY")

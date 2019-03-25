@@ -64,6 +64,8 @@ class Samurai(Entity.Entity):
         self.grabTime = 60
         self.grabDirection = d.none
 
+        self.maxEnergy = 120
+        self.energy = 120
 
         self.collider = collider
 
@@ -203,6 +205,12 @@ class Samurai(Entity.Entity):
                     print("WALLJUMP RIGHT")
                     self.jumpX =  self.jumpPower
                 self.grabDirection = d.none
+    
+    def dash(self):
+        if(self.direction == d.left):
+            self.jumpX = -1 * self.jumpPower
+        if(self.direction == d.right):
+            self.jumpX = 1 * self.jumpPower
 
     def checkSliding(self):
         
