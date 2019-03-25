@@ -61,7 +61,7 @@ def main():
     "WWWWWWWWWWWWWWWWWWWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
-    "WWWWWWWWW       WWWWWW",
+    "WWWWWWWWW      WWWWWWW",
     "W                    W",
     "W                  O W",
     "W   WWWWWW    WWWWWWWW",
@@ -101,7 +101,23 @@ def main():
     "WWWWWWWWWWWWWWWWWWWWWW"
         ]
 
-    levels = [level0, level1, level2, level3]
+    level4 = [
+    "WWWWWWWWWWWWWWWWWWWWWW",
+    "W    W    W    W    WW",
+    "W    W    W    W     W",
+    "W  W W  W W  W W  WW W",
+    "W  W W  W W  W W  W  W",
+    "W  W W  W W  W W  W WW",
+    "W  W W  W W  W W  W  W",
+    "W  W W  W W  W W  WW W",
+    "W  W W  W W  W W  W  W",
+    "W  W W  W W  W W  W WW",
+    "W SW    W    W    W OW",
+    "WWWWWWWWWWWWWWWWWWWWWW"
+        ]
+
+
+    levels = [level0, level1, level2, level3, level4,]
 
     Terrain, players, background, sam, scullx, scully = loadMap(levels[0], screen)
 
@@ -126,6 +142,8 @@ def main():
         if(sam.LEVEL != 0):
             Terrain, players, background, sam, scullx, scully = loadMap(levels[sam.LEVEL - 1], screen)
         if(sam.rect.colliderect(pygame.Rect(scullx,scully,64,64))):
+            if(level >= 8):
+                level = 0
             Terrain, players, background, sam, scullx, scully = loadMap(levels[level], screen)
             level += 1
         pygame.display.update()
