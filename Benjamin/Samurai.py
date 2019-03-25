@@ -40,6 +40,7 @@ class Samurai(Entity.Entity):
 
         self.EXIT = False
         self.LEVEL = 0;
+        self.SKULL = False
 
         self.moveDirection = d.none
         self.frictionToggle = 0
