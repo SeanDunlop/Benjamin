@@ -3,7 +3,8 @@ import Visual
 import Entity
 import directions
 import sys
-
+import PlayerInput
+#from pynput.keyboard import Key, Controller
 false = False
 true = True
 
@@ -70,7 +71,9 @@ class Samurai(Entity.Entity):
         self.loadAnimations()
         self.changeAnimation('Samurai_idle_right')
         
-        
+        #self.controller = PlayerInput.PlayerInput()
+        #self.keyboard = Controller()
+
     def loadAnimations(self):
         self.load_animation('Samurai_idle_left', 15)
         self.load_animation('Samurai_idle_right', 15)
@@ -84,6 +87,37 @@ class Samurai(Entity.Entity):
         self.load_animation('Samurai_sliding_left', 4)
         self.load_animation('Samurai_Wall_Left', 15)
         self.load_animation('Samurai_Wall_Right', 15)
+
+    def checkController(self):
+        if(self.controller.getPlayer1Up()):
+            self.keyboard.press("w")
+        else:
+            self.keyboard.release("w")
+            
+        if(self.controller.getPlayer1Down()):
+            self.keyboard.press("s")
+        else:
+            self.keyboard.release("s")
+            
+        if(self.controller.getPlayer1Right()):
+            self.keyboard.press("d")
+        else:
+            self.keyboard.release("d")
+            
+        if(self.controller.getPlayer1Left()):
+            self.keyboard.press("a")
+        else:
+            self.keyboard.release("a")
+
+        if(self.controller.getPlayer1Button1()):
+            self.keyboard.press(Key.space)
+        else:
+            self.keyboard.release(Key.space)
+
+        if(self.controller.getPlayer1Button2()):
+            self.keyboard.press("q")
+        else:
+            self.keyboard.release("q")
 
     def setMoveDirection(self, direction):
         self.moveDirection = direction
@@ -186,6 +220,7 @@ class Samurai(Entity.Entity):
 
     def update(self):
         super().update()
+        #self.checkController()
         self.updateKeys()
         self.doMovement()
         self.fixAnimation()
