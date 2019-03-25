@@ -73,8 +73,8 @@ def main():
 
     level2 = [
     "WWWWWWWWWWWWWWWWWWWWWW",
-    "WWWWWWWWWWWWWWWWWWWWWW",
-    "WWWWWWWWWWWWWWWWWWWWWW",
+    "WWWWWWW        WWWWWWW",
+    "WWWWWWW WWWWWW WWWWWWW",
     "WWWWW    WWW    WWWWWW",
     "WWWWW     W     WWWWWW",
     "WWWWW S   V   O WWWWWW",
@@ -93,7 +93,7 @@ def main():
     "W                   WW",
     "W                 O WW",
     "W   WWWWWWWWWWWWWWWWWW",
-    "W   W   V      WWWWWWW",
+    "W   W          WWWWWWW",
     "W       WWWW   W   WWW",
     "WWWWWWWWWWWWW      WWW",
     "WWWWWWWS    WWWWW  WWW",
