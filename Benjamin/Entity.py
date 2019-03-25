@@ -46,7 +46,7 @@ class Entity():
 
     def changeHeight(self, height):
         if(height != self.rect.height):
-            print("CHANGED HEIGHT")
+            #print("CHANGED HEIGHT")
             oldHeight = self.rect.height
             dH = (oldHeight - height)
             #bot = self.rect.bottom

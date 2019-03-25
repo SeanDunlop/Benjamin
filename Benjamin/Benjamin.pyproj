@@ -70,6 +70,7 @@
   <ItemGroup>
     <Content Include="Background\background1.png" />
     <Content Include="Bricks\Bricks1.png" />
+    <Content Include="DarkBricks\DarkBricksOld.png" />
     <Content Include="DarkBricks\DarkBricks1.png" />
     <Content Include="Dirt\Dirt1.png" />
     <Content Include="Platform\Platform1.png" />

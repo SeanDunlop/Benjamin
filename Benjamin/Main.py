@@ -12,7 +12,7 @@ import DarkBricks
 
 SIZE = WIDTH, HEIGHT = 1312, 670 #the width and height of our screen
 BACKGROUND_COLOR = pygame.Color('white') #The background colod of our window
-FPS = 24 #Frames per second
+FPS = 60 #Frames per second
 
 def main():
     pygame.init()
@@ -67,7 +67,7 @@ def main():
         
         screen.fill(BACKGROUND_COLOR)
         background.drawAll()
-        background.updateAll()
+        #background.updateAll()
         Terrain.updateAll()
         Terrain.drawAll()
         
