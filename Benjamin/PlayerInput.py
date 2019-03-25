@@ -9,24 +9,33 @@ class PlayerInput:
         GPIO.setmode(GPIO.BCM)
         GPIO.setwarnings(False)
     
-        #Player 1    
+        #Player
+        #JOYSTICK
         GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)      
         GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(27, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-
+        
+        #BUTTONS
         GPIO.setup(5, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
         GPIO.setup(12, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+        
+        #BUTTON LIGHTS
+        GPIO.setup(6, GPIO.OUT)
+        GPIO.setup(16, GPIO.OUT)
 
+        #JOYSTICK INTERUPTS
         GPIO.add_event_detect(4, GPIO.BOTH, callback=self.setPlayer1Up)       
         GPIO.add_event_detect(22, GPIO.BOTH, callback=self.setPlayer1Down)
         GPIO.add_event_detect(27, GPIO.BOTH, callback=self.setPlayer1Right)
         GPIO.add_event_detect(17, GPIO.BOTH, callback=self.setPlayer1Left)
 
+        #BUTTON INTERUPTS
         GPIO.add_event_detect(5, GPIO.BOTH, callback=self.setPlayer1Button1)
         GPIO.add_event_detect(12, GPIO.BOTH, callback=self.setPlayer1Button2)
         
 
+        #BUFFER AND LITERAL VALUES FOR JOYSTICK
         self.p1Up_Literal = False
         self.p1Up_Buffer = False
     
@@ -39,12 +48,14 @@ class PlayerInput:
         self.p1Left_Literal = False
         self.p1Left_Buffer = False
 
+        #BUFFER AND LITERAL VALUES FOR BUTTONS
         self.p1Button1_Literal = False
         self.p1Button1_Buffer = False
 
         self.p1Button2_Literal = False
         self.p1Button2_Buffer = False
 
+    #SETS JOYSTICK DIRECTIONS AND BUTTON ONOFF, IS CALLED FROM INTERUPT
     def setPlayer1Up(self, channel):
         if GPIO.input(4):
             self.p1Up_Literal = True
@@ -86,7 +97,9 @@ class PlayerInput:
             self.p1Button2_Buffer = True
         else:
             self.p1Button2_Literal = False
-        
+    
+    
+    #RETURNS TRUE FALSE IS A DIRECTION IS BEING HELD DOWN
     def getPlayer1Up(self):
         temp = self.p1Up_Buffer
         self.p1Up_Buffer = False
@@ -116,7 +129,21 @@ class PlayerInput:
         temp = self.p1Button2_Buffer
         self.p1Button2_Buffer = False
         return self.p1Button2_Literal or temp
+    
+    #SETS THE LIGHT ON OR OFF
+    def setLightButton1(isOn):
+            if isOn:
+                GPIO.output(6, GPIO.HIGH)
+            else:
+                GPIO.output(6, GPIO.LOW)
+    def setLightButton2(isOn):
+            if isOn:
+                GPIO.output(16, GPIO.HIGH)
+            else:
+                GPIO.output(16, GPIO.LOW)    
 
+
+#MAIN FOR TESTING
 if __name__ == "__main__":
     print ("Testing GPIO inputs")
 
