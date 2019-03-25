@@ -273,7 +273,7 @@ class Samurai(Entity.Entity):
 
 
         #assume not on ground to start
-        print(self.yVelo)
+       #print(self.yVelo)
         if(self.xVelo != 0):
             self.move(self.xVelo, 0)#move in x first
             if self.collider.doCollision(self, self.xVelo, 0):
@@ -315,6 +315,12 @@ class Samurai(Entity.Entity):
                     self.LEVEL = 2;
                 if event.key == pygame.K_3:
                     self.LEVEL = 3;
+                if event.key == pygame.K_4:
+                    self.LEVEL = 4;
+                if event.key == pygame.K_5:
+                    self.LEVEL = 5;
+                if event.key == pygame.K_6:
+                    self.LEVEL = 6;
                 if event.key == pygame.K_ESCAPE:
                     self.EXIT = True
             if event.type == pygame.KEYUP:

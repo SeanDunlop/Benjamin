@@ -23,6 +23,22 @@ def main():
     players = Entity.EntityGroup(screen)
     background = Entity.EntityGroup(screen)
     
+
+    FRAME = [
+    "WWWWWWWWWWWWWWWWWWWWWW",
+    "W                    W",
+    "W                    W",
+    "W                    W",
+    "W                    W",
+    "W                    W",
+    "W                    W",
+    "W                    W",
+    "W                    W",
+    "W                    W",
+    "W                    W",
+    "WWWWWWWWWWWWWWWWWWWWWW"
+        ]
+
     level0 = [
     "WWWWWWWWWWWWWWWWWWWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
@@ -57,7 +73,7 @@ def main():
     "WWWWWWWWWWWWWWWWWWWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
-    "WWWWW     W     WWWWWW",
+    "WWWWW    WWW    WWWWWW",
     "WWWWW     W     WWWWWW",
     "WWWWW S   V     WWWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
@@ -68,7 +84,22 @@ def main():
     "WWWWWWWWWWWWWWWWWWWWWW"
         ]
 
-    levels = [level0, level1, level2]
+    level3 = [
+    "WWWWWWWWWWWWWWWWWWWWWW",
+    "WWWWWWWWWWWWWWWWWWWWWW",
+    "WWWWWWWWWWWWWWWWWWWWWW",
+    "W                   WW",
+    "W                   WW",
+    "W   WWWWWWWWWWWWWWWWWW",
+    "W   W   V      WWWWWWW",
+    "W       WWWW   W   WWW",
+    "WWWWWWWWWWWWW      WWW",
+    "WWWWWWWS    WWWWW  WWW",
+    "WWWWWWWWW          WWW",
+    "WWWWWWWWWWWWWWWWWWWWWW"
+        ]
+
+    levels = [level0, level1, level2, level3]
 
     Terrain, players, background, sam = loadMap(levels[0], screen)
 
