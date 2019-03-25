@@ -64,6 +64,8 @@
     <Folder Include="Samurai_run_right\" />
     <Folder Include="Samurai_sliding_left\" />
     <Folder Include="Samurai_sliding_right\" />
+    <Folder Include="Samurai_Wall_Left\" />
+    <Folder Include="Samurai_Wall_Right\" />
     <Folder Include="static\" />
     <Folder Include="sunflower\" />
   </ItemGroup>
@@ -167,6 +169,22 @@
     <Content Include="Samurai_sliding_right\Samurai_sliding_right2.png" />
     <Content Include="Samurai_sliding_right\Samurai_sliding_right3.png" />
     <Content Include="Samurai_sliding_right\Samurai_sliding_right4.png" />
+    <Content Include="Samurai_Wall_Left\blank" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right1.png" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right10.png" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right11.png" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right12.png" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right13.png" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right14.png" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right15.png" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right2.png" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right3.png" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right4.png" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right5.png" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right6.png" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right7.png" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right8.png" />
+    <Content Include="Samurai_Wall_Right\Samurai_wall_right9.png" />
     <Content Include="static\background.png" />
     <Content Include="static\box.png" />
     <Content Include="static\Bricks.png" />
