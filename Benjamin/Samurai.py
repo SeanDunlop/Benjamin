@@ -37,7 +37,9 @@ class Samurai(Entity.Entity):
         self.rightPressed = False
         self.downPressed = False
         self.upPressed = False
+
         self.EXIT = False
+        self.LEVEL = 0;
 
         self.moveDirection = d.none
         self.frictionToggle = False
@@ -287,6 +289,10 @@ class Samurai(Entity.Entity):
                         print("S P A C E   B A R")
                         self.jump()
                     self.jumpPressed = True
+                if event.key == pygame.K_1:
+                    self.LEVEL = 1;
+                if event.key == pygame.K_2:
+                    self.LEVEL = 2;
                 if event.key == pygame.K_ESCAPE:
                     self.EXIT = True
             if event.type == pygame.KEYUP:
