@@ -42,6 +42,7 @@
     <Compile Include="Platform.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PlayerInput.py" />
     <Compile Include="Samurai.py" />
     <Compile Include="example.py">
       <SubType>Code</SubType>
