@@ -219,6 +219,7 @@ class Samurai(Entity.Entity):
 
     def update(self):
         super().update()
+        self.checkController()
         self.updateKeys()
         self.doMovement()
         self.fixAnimation()
