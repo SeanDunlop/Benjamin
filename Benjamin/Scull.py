@@ -10,10 +10,9 @@ class Scull(Platform.Platform):
         self.changeAnimation('Scull')
 
     def loadImages(self):
-        self.load_animation('Scull',1)
+        self.load_animation('Scull',6)
     def update(self):
         return
-
 
 def build(x, y, group):
     return Scull(x,y,group)

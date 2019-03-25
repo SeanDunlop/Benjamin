@@ -203,6 +203,11 @@
     <Content Include="Samurai_Wall_Right\Samurai_wall_right7.png" />
     <Content Include="Samurai_Wall_Right\Samurai_wall_right8.png" />
     <Content Include="Samurai_Wall_Right\Samurai_wall_right9.png" />
+    <Content Include="Scull\Scull6.png" />
+    <Content Include="Scull\Scull5.png" />
+    <Content Include="Scull\Scull4.png" />
+    <Content Include="Scull\Scull3.png" />
+    <Content Include="Scull\Scull2.png" />
     <Content Include="Scull\Scull1.png" />
     <Content Include="static\background.png" />
     <Content Include="static\box.png" />
