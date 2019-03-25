@@ -131,12 +131,12 @@ class PlayerInput:
         return self.p1Button2_Literal or temp
     
     #SETS THE LIGHT ON OR OFF
-    def setLightButton1(isOn):
+    def setLightButton1(self, isOn):
             if isOn:
                 GPIO.output(6, GPIO.HIGH)
             else:
                 GPIO.output(6, GPIO.LOW)
-    def setLightButton2(isOn):
+    def setLightButton2(self, isOn):
             if isOn:
                 GPIO.output(16, GPIO.HIGH)
             else:
@@ -181,7 +181,11 @@ if __name__ == "__main__":
         else:
             keyboard.release("q")
 
-        
-    
+        buttonInput.setLightButton1(True)
+        buttonInput.setLightButton2(False)
+        time.sleep(1)
+        buttonInput.setLightButton1(False)
+        buttonInput.setLightButton2(True)
+        time.sleep(1)
 
 
