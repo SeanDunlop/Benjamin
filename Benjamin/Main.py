@@ -9,6 +9,7 @@ import Bricks
 import Dirt
 import Background
 import DarkBricks
+import Scull
 
 SIZE = WIDTH, HEIGHT = 1312, 670 #the width and height of our screen
 BACKGROUND_COLOR = pygame.Color('white') #The background colod of our window
@@ -23,6 +24,7 @@ def main():
     players = Entity.EntityGroup(screen)
     background = Entity.EntityGroup(screen)
     
+    level = 1
 
     FRAME = [
     "WWWWWWWWWWWWWWWWWWWWWW",
@@ -45,7 +47,7 @@ def main():
     "WWWWWWWWWWWWWWWWWWWWWW",
     "WWWWW            WWWWW",
     "WWWWW            WWWWW",
-    "WWWWW S          WWWWW",
+    "WWWWW S        O WWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
@@ -59,9 +61,9 @@ def main():
     "WWWWWWWWWWWWWWWWWWWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
-    "WWWWWWWWW      WWWWWWW",
+    "WWWWWWWWW       WWWWWW",
     "W                    W",
-    "W                    W",
+    "W                  O W",
     "W   WWWWWW    WWWWWWWW",
     "WW             WWWWWWW",
     "WWW              SWWWW",
@@ -71,11 +73,11 @@ def main():
 
     level2 = [
     "WWWWWWWWWWWWWWWWWWWWWW",
-    "WWWWWWWWWWWWWWWWWWWWWW",
-    "WWWWWWWWWWWWWWWWWWWWWW",
+    "WWWWWWW        WWWWWWW",
+    "WWWWWWW WWWWWW WWWWWWW",
     "WWWWW    WWW    WWWWWW",
     "WWWWW     W     WWWWWW",
-    "WWWWW S   V     WWWWWW",
+    "WWWWW S   V   O WWWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
@@ -89,9 +91,9 @@ def main():
     "WWWWWWWWWWWWWWWWWWWWWW",
     "WWWWWWWWWWWWWWWWWWWWWW",
     "W                   WW",
-    "W                   WW",
+    "W                 O WW",
     "W   WWWWWWWWWWWWWWWWWW",
-    "W   W   V      WWWWWWW",
+    "W   W          WWWWWWW",
     "W       WWWW   W   WWW",
     "WWWWWWWWWWWWW      WWW",
     "WWWWWWWS    WWWWW  WWW",
@@ -101,7 +103,7 @@ def main():
 
     levels = [level0, level1, level2, level3]
 
-    Terrain, players, background, sam = loadMap(levels[0], screen)
+    Terrain, players, background, sam, scullx, scully = loadMap(levels[0], screen)
 
     
     
@@ -122,7 +124,10 @@ def main():
         if(sam.EXIT):
             break
         if(sam.LEVEL != 0):
-            Terrain, players, background, sam = loadMap(levels[sam.LEVEL - 1], screen)
+            Terrain, players, background, sam, scullx, scully = loadMap(levels[sam.LEVEL - 1], screen)
+        if(sam.rect.colliderect(pygame.Rect(scullx,scully,64,64))):
+            Terrain, players, background, sam, scullx, scully = loadMap(levels[level], screen)
+            level += 1
         pygame.display.update()
         clock.tick(FPS)
 def loadMap(level, screen):
@@ -132,6 +137,7 @@ def loadMap(level, screen):
 
     x = y = -48
     samx = samy = 0
+    scullx = scully = 0
     for row in level:
         for col in row:
             if col == "W":
@@ -141,6 +147,9 @@ def loadMap(level, screen):
                 samy = y
             if col == "V":
                 Bricks.build(x, y-48, Terrain)
+            if col == "O":
+                scullx = x
+                scully = y
             x += 64
         y += 64
         x = -48
@@ -148,7 +157,8 @@ def loadMap(level, screen):
     DarkBricks.build(0,0,background)
     sam = Samurai.Samurai(samx, samy, Collider.Collider(Terrain))
     sam.setDirection(directions.directions.LEFT)
+    scull = Scull.build(scullx, scully, background)
     players.add(sam)
-    return Terrain, players, background, sam
+    return Terrain, players, background, sam, scullx, scully
 if __name__ == '__main__':
     main()
